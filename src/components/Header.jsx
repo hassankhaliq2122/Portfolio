@@ -1,5 +1,5 @@
 import React from 'react'
-import headerLogo from '../assets/logo/headerLogo.svg'
+import headerLogo from '../assets/logo/HeaderLogo.svg'
 import './Header.css'
 import ArrowButton from './ArrowButton'
 import BlueBorderButton from './BlueBorderButton'
