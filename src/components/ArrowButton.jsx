@@ -1,7 +1,7 @@
 import React from 'react'
 import arrow from '../assets/icons/arrow.svg'
 
-const Button = () => {
+const ArrowButton = ({text,className='',style}) => {
   return (
     <button
       style={{
@@ -21,10 +21,12 @@ const Button = () => {
         justifyContent: 'center',
         gap: '8px',
         padding: '0 16px',
-        flexShrink: 0
+        flexShrink: 0,
+        ...style
       }}
+      className={className}
     >
-      <span>Book a Call</span>
+      <span>{text}</span>
       <img
         src={arrow}
         alt="Arrow"
@@ -34,4 +36,4 @@ const Button = () => {
   )
 }
 
-export default Button
+export default ArrowButton

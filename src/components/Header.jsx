@@ -15,7 +15,7 @@ const Header = () => {
           <div className='headerLinks'>
             <ul>
               <li><p className='headerText'>Let's brand up your website</p></li>
-              <ArrowButton/>
+              <ArrowButton text="Book a Call"/>
               <FullPageMenu />
             </ul>
           </div>

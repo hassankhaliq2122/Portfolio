@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-const BlueBorderButton = ({ text = "Menu", onClick, className, style }) => {
+const BlueBorderButton = ({ text, onClick, className='', style }) => {
   const sliderRef = useRef(null);
   
   // Determine target index based on text
@@ -9,6 +9,7 @@ const BlueBorderButton = ({ text = "Menu", onClick, className, style }) => {
   // If text is neither, default to Menu behavior or just display text statically?
   // User keeps switching between "Menu" and "Exit", so let's optimize for that.
   const isExit = text === "Exit";
+  const isToggle = text === "Menu" || text === "Exit";
 
   useEffect(() => {
     if (sliderRef.current) {
@@ -44,7 +45,10 @@ const BlueBorderButton = ({ text = "Menu", onClick, className, style }) => {
         flexShrink: 0,
         ...style
       }}
+      
     >
+      {!isToggle && <span>{text}</span>}
+      {isToggle && (
       <div 
         style={{ 
           height: "1.2em", 
@@ -70,6 +74,7 @@ const BlueBorderButton = ({ text = "Menu", onClick, className, style }) => {
           <span style={{ display: 'block', height: '1.2em' }}>Exit</span>
         </div>
       </div>
+      )}
     </button>
   );
 };
