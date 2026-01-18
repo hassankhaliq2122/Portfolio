@@ -27,17 +27,32 @@ const PremiumAnimation = () => {
           start: "top top", // Start pinning when component hits top of viewport
           end: () => "+=4000", // Dynamic end value for recalculation
           pin: true, // Pin the container
+          pinSpacing: true, // Explicit setting
           scrub: 1, // Smooth scrubbing based on scroll position
           anticipatePin: 1, // Avoid pin jitter
           fastScrollEnd: true,
           preventOverlaps: true,
           invalidateOnRefresh: true, // Recalculate on resize
+          // CRITICAL FIX: Lock the timeline state when leaving/re-entering
+          onLeave: (self) => {
+            // Force timeline to 100% when leaving to prevent "catch-up" replay
+            self.animation.progress(1);
+          },
+          onLeaveBack: (self) => {
+            // Force timeline to 0% when leaving backwards
+            self.animation.progress(0);
+          },
+          onEnter: (self) => {
+            // Ensure correct state when entering
+            self.animation.progress(0);
+          },
+          onEnterBack: (self) => {
+            // Ensure correct state when re-entering from below
+            self.animation.progress(1);
+          },
           // markers: true, // debug
         },
       });
-
-      // Refresh ScrollTrigger to ensure accurate positions after mount
-      ScrollTrigger.refresh();
 
       // Initial States:
       // Ensure everything starts hidden or in initial position so we can animate them in.
@@ -86,11 +101,6 @@ const PremiumAnimation = () => {
         "+=0.5", // Gap between image and text
       );
 
-      // Add a small buffer at the end so the user can see the final state
-      // before unpinning/scrolling away.
-      // Removed buffer to ensure it unpins immediately after list item is shown
-      // tl.to({}, { duration: 1 });
-
       // Continuous Ripple Effect for Grid (Independent of scroll position, runs constantly)
       gsap.to(".grid-background", {
         backgroundPosition: "50px 50px",
@@ -98,6 +108,10 @@ const PremiumAnimation = () => {
         repeat: -1,
         ease: "linear",
       });
+
+      // IMPORTANT: Refresh AFTER timeline is fully defined
+      // Use a small delay to ensure React has finished rendering
+      gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
     }, containerRef);
 
     return () => ctx.revert();
