@@ -1,0 +1,180 @@
+.results-container {
+  
+  height: auto;
+  margin: 0 auto;
+  background-color: #F2F3F6;
+  padding: 60px 0px;
+}
+
+.resultsLeft ,.resultRight {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 5rem;
+  padding: 20px;
+ 
+}
+.resultsLeft h1{
+  font-size: 48px;
+  font-weight: 600;
+  color: #000000;
+}
+.resultsRight{
+  display: flex;
+  justify-content: end;
+  color: #000000;
+  margin-right: 5rem;
+}
+
+.resultsRight p{
+  font-size: 16px;
+  font-weight: 400;
+  color: #5C6670;
+}
+.resultsTop {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+.resultsBottom {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.resultsTop p {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+}
+.resultsBottom p {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+}
+.resultBoxes {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: 0 1rem;
+}
+.box1,
+.box2,
+.box3,
+.box4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* border: 1px solid black; */
+  padding: 5px;
+  margin: 5px;
+   width: 20rem;
+     background-color: #ffffff;
+}
+
+.box1 {
+  width: 20rem;
+  height: 40vh;
+
+}
+.box2 {
+  width: 20rem;
+  height: 40vh;
+}
+.box3 {
+  width: 20rem;
+  height: 40vh;
+}
+.box4 {
+  width: 20rem;
+  height: 40vh;
+
+}
+.box1 p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}
+.box2 p {
+  font-size: 16px;
+  font-weight:400;
+  color: #000000;
+}
+.box3 p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}
+.box4 p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}
+.box1 h3,
+.box2 h3,
+.box3 h3,
+.box4 h3 {
+  font-size: 80px;
+  font-weight: 600;
+  color: #000000;
+}
+
+
+.count-up-text{
+  font-size: 80px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.count-up-suffix {
+  font-size: 80px;
+  font-weight: 600;
+  color: #000000;
+}
+.glow-border {
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/* Glow border layer */
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 16px; /* BORDER THICKNESS */
+  border-radius: inherit;
+  background: radial-gradient(
+    120px circle at var(--x, 50%) var(--y, 50%),
+    rgba(21, 213, 216, 0.9),
+    rgba(21, 213, 216, 0.4),
+    rgba(218, 44, 191, 0.4),
+    rgba(216, 21, 21, 0.4),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+
+  /* MAGIC: CUT OUT CENTER */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Activate on hover */
+.glow-border:hover::before {
+  opacity: 1;
+}

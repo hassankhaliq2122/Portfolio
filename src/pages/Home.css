@@ -5,8 +5,8 @@
    padding: 0 24px;
    box-sizing: border-box;
    overflow-x: hidden;
-   /* height: 2500px; */
 }
+
 
 .home-title {
     font-size: clamp(28px, 6vw, 80px);
@@ -14,7 +14,7 @@
    
     line-height: 1.1;
     word-wrap: break-word;
-    overflow-wrap: break-word;
+    overflow-wrap: break-word;  
 }
 
 .home-description {

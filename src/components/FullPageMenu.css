@@ -171,7 +171,7 @@
 }
 
 /* Services Section */
-.services-section {
+.services-section-menu {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -179,7 +179,7 @@
   width: 100%;
 }
 
-.services-title {
+.services-title-menu {
   font-size: 16px;
   font-weight: 600;
   color: #2C65E1;
@@ -188,7 +188,7 @@
   letter-spacing: 1px;
 }
 
-.services-list {
+.services-list-menu {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -196,23 +196,23 @@
   flex-direction: column;
   align-items: stretch;
   gap: 12px;
-  width: 100%;
+  /* width: 100%; */
 }
 .our-serv img{
    /* width: 40px; */
    width: 50px;
    height: 50px;
 }
-.service-item {
+.service-item-menu {
   display: flex;
   align-items: baseline;
-  gap: 0;
+  gap: 16px;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-.service-number {
+.service-number-menu {
   font-size: 20px;
   font-weight: 600;
   /* color: #2C65E1; */
@@ -220,7 +220,7 @@
   flex-shrink: 0;
 }
 
-.service-label {
+.service-label-menu {
   font-size: 16px;
   font-weight: 400;
   color: #000000;
@@ -308,6 +308,7 @@
       opacity: 1;
       transition-duration: 2s;
       transition: ease-in-out;
+      margin-bottom: 20px;
   transform: translateY(16px);
 }
 
@@ -406,12 +407,12 @@
     padding: 20px 16px;
   }
   
-  .services-title,
+  .services-title-menu,
   .contact-title {
     font-size: 16px;
   }
   
-  .service-label {
+  .service-label-menu {
     font-size: 16px;
   }
   

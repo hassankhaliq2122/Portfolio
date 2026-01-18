@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import BlueBorderButton from "./BlueBorderButton";
 import ArrowBlue from "../assets/icons/ArrowBlue.svg";
-import Arrow from "../assets/icons/arrow.svg";
+import Arrow from "../assets/icons/Arrow.svg";
 import ArrowBlack from "../assets/icons/ArrowBlack.svg";
 import "./FullPageMenu.css";
-import MenuFooter from "../assets/homePage/MenuFooter.svg";
+import MenuFooter from "../assets/homePage/MenuFooter.png";
 const menuItems = [
   { label: "Home", link: "/" },
   { label: "Work", link: "/work" },
@@ -59,7 +59,7 @@ const FullPageMenu = () => {
           stagger: 0.1,
           ease: "power3.out",
           delay: 0.2,
-        }
+        },
       );
 
       // Stagger service items
@@ -73,7 +73,7 @@ const FullPageMenu = () => {
           stagger: 0.08,
           ease: "power3.out",
           delay: 0.3,
-        }
+        },
       );
 
       // Stagger contact items
@@ -87,7 +87,7 @@ const FullPageMenu = () => {
           stagger: 0.1,
           ease: "power3.out",
           delay: 0.5,
-        }
+        },
       );
     } else {
       // Animate menu closing
@@ -152,22 +152,24 @@ const FullPageMenu = () => {
           {/* Right Side - Services & Contact */}
           <div className="menu-right">
             {/* Services Section */}
-            <div className="services-section">
+            <div className="services-section-menu">
               <div className="our-serv">
-                <h3 className="services-title">
+                <h3 className="services-title-menu">
                   Our Services
                   <img src={ArrowBlue} />
                 </h3>
               </div>
-              <ul className="services-list">
+              <ul className="services-list-menu">
                 {serviceItems.map((service, index) => (
                   <li
                     key={service.number}
-                    className="service-item"
+                    className="service-item-menu"
                     ref={(el) => (serviceRefs.current[index] = el)}
                   >
-                    <span className="service-number">{service.number}</span>
-                    <span className="service-label">{service.label}</span>
+                    <span className="service-number-menu">
+                      {service.number}
+                    </span>
+                    <span className="service-label-menu">{service.label}</span>
                   </li>
                 ))}
               </ul>
@@ -200,21 +202,19 @@ const FullPageMenu = () => {
               </div>
             </div>
 
-
             {/* Footer */}
             <div className="menuRight-footer">
               <div className="menuRight-footer-img">
-                <img src={MenuFooter} alt="asd" />
+                <img src={MenuFooter} alt="asd" style={{ width: "100%" }} />
               </div>
               <div className="menuRight-footer-text">
                 <h2>Beyond Trends by Metatrybe</h2>
-                <p>Exploring design-led directions, industry observations,and innovation towards impact.</p>
+                <p>
+                  Exploring design-led directions, industry observations,and
+                  innovation towards impact.
+                </p>
               </div>
             </div>
-
-
-
-
           </div>
         </div>
       </div>

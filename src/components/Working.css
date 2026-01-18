@@ -1,0 +1,130 @@
+.working-section {
+  width: 100%;
+  /* padding: 80px 40px; */
+  background-color: #fff;
+  font-family: 'Inter', sans-serif; /* Assuming Inter or similar sans-serif */
+  /* box-sizing: border-box; */
+}
+
+.working-container {
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-top: 1px solid #eee; /* Optional top border if needed, not explicitly in image but good for separation */
+}
+
+/* Columns */
+.working-col {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e0e0e0; /* Vertical divider */
+}
+
+.working-col:last-child {
+  border-right: none;
+}
+
+/* Headings */
+.working-main-title {
+  font-size: 48px !important;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #000;
+  margin-bottom: 24px;
+  text-align: left;
+  white-space: pre-line; /* Respect \n characters */
+}
+
+.working-sub-title {
+  font-size: 20px !important;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #333;
+  margin-bottom: 0px; /* Spacing handled by header wrapper min-height */
+}
+
+/* Header Wrapper for Alignment */
+.working-header-wrapper {
+  min-height: 170px; /* Approx height of 3 lines of 48px font + line-height */
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24px; /* Space between header area and text */
+}
+
+/* Paragraphs */
+.working-text {
+  font-size: 16px!important;
+  line-height: 1.6;
+  color: #2F3438;
+  font-weight: 400 !important;
+  margin-bottom: 20px;
+}
+
+.working-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Remove the specific spacers since we use min-height now */
+.spacer-top, .working-mid .working-content-wrapper, .working-right .working-content-wrapper {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+/* Footer / Button */
+.working-footer {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+  margin-top: 20px;
+}
+
+.contact-btn {
+  background-color: #3b82f6; /* Bright blue like image */
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px; /* Slightly rounded */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+}
+
+.contact-btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.arrow {
+  font-size: 18px;
+}
+
+/* ScrollReveal overrides if necessary */
+.scroll-reveal {
+  margin: 0 !important; /* Remove default margin from component if it conflicts */
+  padding: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .working-container {
+    flex-direction: column;
+  }
+  .working-col {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding: 30px;
+  }
+  .working-mid .working-content-wrapper,
+  .working-right .working-content-wrapper {
+     padding-top: 20px; /* Reset the spacer on mobile */
+  }
+}
