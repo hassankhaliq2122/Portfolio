@@ -63,17 +63,18 @@ const HomePageProjects = () => {
       });
 
       // Create the main pinned scroll trigger
-      const scrollLength = window.innerHeight * (totalPanels - 1);
+      // Using functional end value and invalidateOnRefresh for production stability
 
       ScrollTrigger.create({
         trigger: containerRef.current,
         start: "top top",
-        end: `+=${scrollLength}`,
+        end: () => `+=${window.innerHeight * (totalPanels - 1)}`,
         pin: true,
-        scrub: 0.5, // Reduced from 1 for snappier response
-        anticipatePin: 1, // Avoid pin jitter
+        scrub: 0.5, // 0.5s smoothing
+        anticipatePin: 1,
         fastScrollEnd: true,
         preventOverlaps: true,
+        invalidateOnRefresh: true, // Recalculate values on resize/refresh
         onUpdate: (self) => {
           const progress = self.progress;
           const currentIndex = Math.min(
@@ -87,8 +88,8 @@ const HomePageProjects = () => {
               gsap.to(panel, {
                 autoAlpha: 1,
                 y: 0,
-                duration: 0.5, // slightly longer for smoothness
-                overwrite: true, // ensure clean transition
+                duration: 0.5,
+                overwrite: true,
               });
             } else {
               gsap.to(panel, {
@@ -101,6 +102,9 @@ const HomePageProjects = () => {
           });
         },
       });
+
+      // Force refresh after mount to handle potential layout shifts
+      ScrollTrigger.refresh();
 
       return () => {
         ScrollTrigger.getAll().forEach((st) => st.kill());

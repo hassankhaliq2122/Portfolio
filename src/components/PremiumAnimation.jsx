@@ -25,15 +25,19 @@ const PremiumAnimation = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top", // Start pinning when component hits top of viewport
-          end: "+=4000", // Scroll 4000px to complete the animation sequence
+          end: () => "+=4000", // Dynamic end value for recalculation
           pin: true, // Pin the container
           scrub: 1, // Smooth scrubbing based on scroll position
           anticipatePin: 1, // Avoid pin jitter
           fastScrollEnd: true,
           preventOverlaps: true,
+          invalidateOnRefresh: true, // Recalculate on resize
           // markers: true, // debug
         },
       });
+
+      // Refresh ScrollTrigger to ensure accurate positions after mount
+      ScrollTrigger.refresh();
 
       // Initial States:
       // Ensure everything starts hidden or in initial position so we can animate them in.
