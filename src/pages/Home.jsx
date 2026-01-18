@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "../components/Header";
 import TextAnimation from "../components/TextAnimation";
 import BlurText from "../components/ui/BlurText";
@@ -13,7 +15,47 @@ import ServicesDrawer from "../components/ServicesDrawer";
 import Results from "../components/Results";
 import PremiumAnimation from "../components/PremiumAnimation";
 import "./Home.css";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Home = () => {
+  // Global handler to refresh ScrollTrigger after assets load
+  useEffect(() => {
+    // Refresh after fonts load (handles web font layout shifts)
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
+
+    // Refresh after all images load
+    const handleImageLoad = () => {
+      ScrollTrigger.refresh();
+    };
+
+    const images = document.querySelectorAll("img");
+    images.forEach((img) => {
+      if (img.complete) {
+        // Already loaded
+      } else {
+        img.addEventListener("load", handleImageLoad);
+      }
+    });
+
+    // Fallback: Refresh on full window load
+    const handleWindowLoad = () => {
+      // Delay slightly for any final layout adjustments
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+    };
+    window.addEventListener("load", handleWindowLoad);
+
+    // Cleanup
+    return () => {
+      images.forEach((img) => img.removeEventListener("load", handleImageLoad));
+      window.removeEventListener("load", handleWindowLoad);
+    };
+  }, []);
+
   return (
     <>
       <div className="home-container">
