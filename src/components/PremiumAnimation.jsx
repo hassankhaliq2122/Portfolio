@@ -28,6 +28,9 @@ const PremiumAnimation = () => {
           end: "+=4000", // Scroll 4000px to complete the animation sequence
           pin: true, // Pin the container
           scrub: 1, // Smooth scrubbing based on scroll position
+          anticipatePin: 1, // Avoid pin jitter
+          fastScrollEnd: true,
+          preventOverlaps: true,
           // markers: true, // debug
         },
       });

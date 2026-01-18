@@ -70,7 +70,10 @@ const HomePageProjects = () => {
         start: "top top",
         end: `+=${scrollLength}`,
         pin: true,
-        scrub: true,
+        scrub: 1, // Smooth scrubbing
+        anticipatePin: 1, // Avoid pin jitter
+        fastScrollEnd: true,
+        preventOverlaps: true,
         onUpdate: (self) => {
           const progress = self.progress;
           const currentIndex = Math.min(
@@ -81,12 +84,18 @@ const HomePageProjects = () => {
           // Show/hide panels based on scroll progress
           panels.forEach((panel, i) => {
             if (i === currentIndex) {
-              gsap.to(panel, { autoAlpha: 1, y: 0, duration: 0.3 });
+              gsap.to(panel, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.5, // slightly longer for smoothness
+                overwrite: true, // ensure clean transition
+              });
             } else {
               gsap.to(panel, {
                 autoAlpha: 0,
                 y: i < currentIndex ? -30 : 30,
-                duration: 0.3,
+                duration: 0.5,
+                overwrite: true,
               });
             }
           });
