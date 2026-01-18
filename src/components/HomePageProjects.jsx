@@ -70,11 +70,33 @@ const HomePageProjects = () => {
         start: "top top",
         end: () => `+=${window.innerHeight * (totalPanels - 1)}`,
         pin: true,
+        pinSpacing: true, // Explicit
         scrub: 0.5, // 0.5s smoothing
         anticipatePin: 1,
         fastScrollEnd: true,
         preventOverlaps: true,
         invalidateOnRefresh: true, // Recalculate values on resize/refresh
+        // CRITICAL FIX: Lock the panel state when leaving/re-entering
+        onLeave: () => {
+          // Force last panel visible when leaving
+          panels.forEach((panel, i) => {
+            gsap.set(panel, {
+              autoAlpha: i === totalPanels - 1 ? 1 : 0,
+              y: 0,
+              overwrite: true,
+            });
+          });
+        },
+        onLeaveBack: () => {
+          // Force first panel visible when leaving backwards
+          panels.forEach((panel, i) => {
+            gsap.set(panel, {
+              autoAlpha: i === 0 ? 1 : 0,
+              y: 0,
+              overwrite: true,
+            });
+          });
+        },
         onUpdate: (self) => {
           const progress = self.progress;
           const currentIndex = Math.min(
@@ -103,8 +125,8 @@ const HomePageProjects = () => {
         },
       });
 
-      // Force refresh after mount to handle potential layout shifts
-      ScrollTrigger.refresh();
+      // Force refresh AFTER setup with a small delay
+      gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
 
       return () => {
         ScrollTrigger.getAll().forEach((st) => st.kill());
