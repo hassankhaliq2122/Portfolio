@@ -70,7 +70,7 @@ const HomePageProjects = () => {
         start: "top top",
         end: `+=${scrollLength}`,
         pin: true,
-        scrub: 1, // Smooth scrubbing
+        scrub: 0.5, // Reduced from 1 for snappier response
         anticipatePin: 1, // Avoid pin jitter
         fastScrollEnd: true,
         preventOverlaps: true,

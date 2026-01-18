@@ -84,7 +84,8 @@ const PremiumAnimation = () => {
 
       // Add a small buffer at the end so the user can see the final state
       // before unpinning/scrolling away.
-      tl.to({}, { duration: 1 });
+      // Removed buffer to ensure it unpins immediately after list item is shown
+      // tl.to({}, { duration: 1 });
 
       // Continuous Ripple Effect for Grid (Independent of scroll position, runs constantly)
       gsap.to(".grid-background", {
