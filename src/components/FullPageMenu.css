@@ -39,7 +39,7 @@
   z-index: 999;
   transform: translateX(-100%);
   overflow-y: auto;
-  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 4px 0 30px rgba(0, 0, 0, 0.1); */
 }
 
 .full-page-menu.open {
