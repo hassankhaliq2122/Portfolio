@@ -18,7 +18,7 @@
   gap: 40px;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 40px 60px; /* Top padding + content padding */
+  padding: 40px 40px 30px; /* Reduced from 80px 40px 60px */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -67,7 +67,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 40px 0;
+  padding: 20px 0; /* Reduced from 40px 0 */
   overflow: hidden;
 }
 
@@ -81,7 +81,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 40px 40px; /* Bottom padding */
+  padding: 140px 40px 20px; /* Reduced from 30px 40px 40px */
   max-width: 1280px;
   margin: 0 auto;
   border-top: 1px solid rgba(255, 255, 255, 0.1);

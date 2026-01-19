@@ -1,5 +1,5 @@
 import React from "react";
-import FooterLogo from "../assets/logo/Footer.svg";
+import FooterLogo from "../assets/logo/Footer.jpeg";
 import "./Footer.css";
 import MetallicPaintUse from "./MetallicPaintUse";
 

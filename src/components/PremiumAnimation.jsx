@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./PremiumAnimation.css";
-import PremiumMan from "../assets/homePage/PremiumMan.svg";
+import PremiumMan from "../assets/homePage/PremiumMan.png";
 import ArrowButton from "./ArrowButton";
 
 gsap.registerPlugin(ScrollTrigger);

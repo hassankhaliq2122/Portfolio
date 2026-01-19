@@ -55,7 +55,7 @@ const MetallicPaintUse = () => {
       <div
         style={{
           width: "100%",
-          height: "500px",
+          height: "350px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -68,7 +68,7 @@ const MetallicPaintUse = () => {
   }
 
   return (
-    <div style={{ width: "100%", height: "500px" }}>
+    <div style={{ width: "100%", height: "350px" }}>
       <MetallicPaint
         imageData={imageData}
         params={{

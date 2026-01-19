@@ -8,13 +8,36 @@ import ArrowButton from "../components/ArrowButton";
 import BlueBorderButton from "../components/BlueBorderButton";
 import AnimatedContentUse from "../components/AnimatedContentUse";
 import SplitText from "../components/ui/SplitText";
-import HomePageProjects from "../components/HomePageProjects";
-import Comments from "../components/Comments";
 import Working from "../components/Working";
 import ServicesDrawer from "../components/ServicesDrawer";
 import Results from "../components/Results";
-import PremiumAnimation from "../components/PremiumAnimation";
 import "./Home.css";
+
+const HomePageProjects = React.lazy(
+  () => import("../components/HomePageProjects"),
+);
+const Comments = React.lazy(() => import("../components/Comments"));
+const PremiumAnimation = React.lazy(
+  () => import("../components/PremiumAnimation"),
+);
+const Footer = React.lazy(() => import("../components/Footer"));
+
+// A simple loading placeholder to prevent layout shifts during lazy loading
+const SectionLoader = () => (
+  <div
+    style={{
+      height: "400px",
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "#0a0a0a",
+      color: "#333",
+    }}
+  >
+    <span>Loading Section...</span>
+  </div>
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -175,14 +198,15 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       <HomePageProjects />
       <Comments />
-
       <Working />
       <ServicesDrawer />
       <Results />
-      <PremiumAnimation />
+      <React.Suspense fallback={<SectionLoader />}>
+        <PremiumAnimation />
+        <Footer />
+      </React.Suspense>
     </>
   );
 };
