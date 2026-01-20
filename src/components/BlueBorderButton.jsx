@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import StarBorder from "../JsrepoComponents/StarBorder";
 
 const BlueBorderButton = ({ text, onClick, className = "", style }) => {
   const sliderRef = useRef(null);
@@ -23,34 +22,26 @@ const BlueBorderButton = ({ text, onClick, className = "", style }) => {
   }, [isExit]);
 
   return (
-    <StarBorder
-      as="button"
+    <button
       onClick={onClick}
       className={className}
-      color="cyan"
-      speed="5s"
-      innerStyle={{
-        background: "transparent",
-        color: "#2C65E1",
-        padding: "0 12px", // Override StarBorder default
-        height: "48px", // Restore original height
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "20px",
-      }}
       style={{
         fontSize: "clamp(14px, 2vw, 18px)",
-        backgroundColor: "transparent", // Outer container too just in case
+        backgroundColor: "transparent",
         fontWeight: "600",
         color: "#2C65E1",
-        // border: "2px solid #2C65E1", // Removed manual border
-        // borderRadius: "8px", // StarBorder uses 20px
+        border: "2px solid #2C65E1",
+        borderRadius: "8px",
         minWidth: "65px",
         maxWidth: "75px",
         width: "auto",
-        height: "auto",
+        height: "48px",
         cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "8px",
+        padding: "0 12px",
         flexShrink: 0,
         ...style,
       }}
@@ -83,7 +74,7 @@ const BlueBorderButton = ({ text, onClick, className = "", style }) => {
           </div>
         </div>
       )}
-    </StarBorder>
+    </button>
   );
 };
 
