@@ -55,9 +55,9 @@
 .start-project-btn {
   margin-top: 24px;
   width: auto;
-  max-width: none !important;
+  max-width: 190px !important;
   white-space: nowrap;
-  padding: 0 15px !important;
+  /* padding: 0 15px !important; */
 }
 
 .start-project-btn:hover {
