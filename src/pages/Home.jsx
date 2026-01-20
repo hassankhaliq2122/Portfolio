@@ -98,10 +98,6 @@ const Home = () => {
             text="Start Your Project"
             className="start-project-btn arrow-btn"
           />
-          <BlueBorderButton
-            className="blue-border-btn"
-            text="Explore Our Work"
-          />
         </div>
         <AnimatedContentUse />
         <div className="home-split-text-container">

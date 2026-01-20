@@ -7,7 +7,7 @@ import ArrowButton from "./ArrowButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import ArrowBlue from "../assets/icons/ArrowBlue.svg";
+import ArrowBlue from "../assets/icons/ArrowBlue.png";
 
 const PremiumAnimation = () => {
   const containerRef = useRef(null);

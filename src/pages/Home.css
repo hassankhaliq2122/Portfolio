@@ -27,6 +27,7 @@
 }
 .home-buttons{
     display: flex;
+    margin: 40px 0;
    
 }
 .blue-border-btn {

@@ -55,6 +55,9 @@
   text-align: center;
   z-index: 1;
   pointer-events: none;
+  /* Fading/Dissolving lower corners effect */
+  mask-image: radial-gradient(circle at 50% -20%, black 65%, transparent 95%);
+  -webkit-mask-image: radial-gradient(circle at 50% -20%, black 65%, transparent 95%);
 }
 
 .premium-bg-text {
@@ -92,7 +95,7 @@
   top: 70%; /* Moved lower (chest level) */
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 10; /* Increased to be above the bottom shadow (z-index 5) */
   text-align: center;
   color: #fff;
   width: 100%;

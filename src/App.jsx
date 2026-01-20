@@ -3,9 +3,11 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import "./App.css";
+import IntroCover from "./components/IntroCover";
 const App = () => {
   return (
     <div>
+      <IntroCover />
       <Home />
     </div>
   );

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react";
 import "./ServicesDrawer.css";
 
 const services = [
@@ -32,9 +33,22 @@ const ServicesDrawer = () => {
   const [activeId, setActiveId] = useState("01");
 
   const handleToggle = (id) => {
-    if (activeId !== id) {
-      setActiveId(id);
-    }
+    // If clicking already active, keep it active or toggle to null?
+    // Usually accordions toggle.
+    setActiveId(activeId === id ? null : id);
+  };
+
+  // Shared transition config for smoothness
+  const springTransition = {
+    type: "spring",
+    stiffness: 300,
+    damping: 30,
+    mass: 0.8,
+  };
+
+  const smoothTransition = {
+    duration: 0.6,
+    ease: [0.22, 1, 0.36, 1],
   };
 
   return (
@@ -55,19 +69,43 @@ const ServicesDrawer = () => {
         {/* Right Side - Accordion */}
         <div className="services-right">
           {services.map((service) => (
-            <div
+            <motion.div
+              layout
               key={service.id}
               className={`service-item service-item-${service.id} ${activeId === service.id ? "active" : ""}`}
               onClick={() => handleToggle(service.id)}
+              transition={smoothTransition}
             >
               <div className="service-header">
                 <h3 className="service-name">{service.title}</h3>
                 <span className="service-number">{service.id}</span>
               </div>
-              <div className="service-body">
-                <p className="service-description">{service.description}</p>
-              </div>
-            </div>
+
+              <AnimatePresence initial={false}>
+                {activeId === service.id && (
+                  <motion.div
+                    key="content"
+                    className="service-body"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={smoothTransition}
+                  >
+                    <div className="service-content-wrapper">
+                      <motion.p
+                        className="service-description"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: 10, opacity: 0 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        {service.description}
+                      </motion.p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
       </div>

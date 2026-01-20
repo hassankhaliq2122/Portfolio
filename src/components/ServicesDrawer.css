@@ -51,7 +51,7 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: all 0.4s ease;
+  /* transition removed - handled by Framer Motion layout prop */
 }
 
 /* Background Colors */
@@ -73,7 +73,7 @@
 
 .service-header {
   padding: 35px 35px;
-  /* display: flex; */
+  display: flex; /* Restored display flex */
   justify-content: space-between;
   align-items: center;
 }
@@ -87,35 +87,23 @@
 .service-number {
   font-size: 16px;
   font-weight: 500;
-  margin-left: 42rem;
   opacity: 0.9;
 }
 
 .service-body {
-  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
-  padding: 0 35px;
+  /* padding removed to avoid layout jerks during height animation */
 }
 
-.service-item.active .service-body {
-  max-height: 999px; /* FIXED */
-  padding-bottom: 30px;
+.service-content-wrapper {
+  padding: 0 35px 35px 35px;
 }
 
 .service-description {
   font-size: 14px;
   line-height: 1.6;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
   margin: 0;
   color: #fff;
-}
-
-.service-item.active .service-description {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Responsive */
@@ -149,9 +137,7 @@
     font-size: 18px;
   }
 
-  .service-item.active .service-body {
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-bottom: 25px;
+  .service-content-wrapper {
+    padding: 0 25px 25px 25px;
   }
 }
