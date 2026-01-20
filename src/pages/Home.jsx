@@ -201,7 +201,7 @@ const Home = () => {
       <Results />
       <React.Suspense fallback={<SectionLoader />}>
         <PremiumAnimation />
-        <Footer />
+        {/* <Footer /> */}
       </React.Suspense>
     </>
   );
