@@ -5,12 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./IntroCover.css";
 
 // Import Assets
-import skyImg from "../assets/intro/sky.jpg";
-import mountBg from "../assets/intro/mountBg.webp";
-import mountMg from "../assets/intro/mountMg.png";
-import mountFg from "../assets/intro/mountFg.png";
-import cloud1 from "../assets/intro/cloud1.png";
-import cloud2 from "../assets/intro/cloud2.webp";
+import skyImg from "../assets/Intro/sky.jpg";
+import mountBg from "../assets/Intro/mountBg.webp";
+import mountMg from "../assets/Intro/mountMg.png";
+import mountFg from "../assets/Intro/mountFg.png";
+import cloud1 from "../assets/Intro/cloud1.png";
+import cloud2 from "../assets/Intro/cloud2.webp";
 // import cloud3 from '../assets/intro/cloud3.png'; // Optional extra cloud
 
 gsap.registerPlugin(ScrollTrigger);
