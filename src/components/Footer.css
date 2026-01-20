@@ -67,12 +67,14 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 20px 0; /* Reduced from 40px 0 */
+  /* padding: 20px 0;  */
   overflow: hidden;
 }
-
+.footer-logo-section img{
+  width: 150vh;
+}
 .footer-logo {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 

@@ -2,7 +2,7 @@ import MetallicPaint, {
   parseLogoImage,
 } from "../JsrepoComponents/MetallicPaint";
 import { useState, useEffect } from "react";
-import logo from "../assets/logo/Footer.svg";
+// import logo from "../assets/logo/Footer.svg";
 
 const MetallicPaintUse = () => {
   const [imageData, setImageData] = useState(null);

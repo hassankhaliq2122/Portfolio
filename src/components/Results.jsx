@@ -7,10 +7,10 @@ const Results = () => {
     <div className="results-container">
       <div className="resultsLeft">
         <h1>Proven Result</h1>
-        <h1>Powerful Impact.</h1>
-      </div>
-      <div className="resultsRight">
-        <p>In Service For Premium Brands Over The globe</p>
+        <div className="results-inline-wrapper">
+          <h1>Powerful Impact.</h1>
+          <p>In Service For Premium Brands Over The globe</p>
+        </div>
       </div>
       <div className="resultBoxes">
         {/* <GlowingBorderWrapper> */}

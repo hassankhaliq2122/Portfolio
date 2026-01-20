@@ -1,7 +1,8 @@
 import React from "react";
-import FooterLogo from "../assets/logo/Footer.jpeg";
+// import FooterLogo from "../assets/logo/Footer.jpeg";
 import "./Footer.css";
-import MetallicPaintUse from "./MetallicPaintUse";
+import FooterLogo from "../assets/logo/Footer.png";
+// import MetallicPaintUse from "./MetallicPaintUse";
 
 const Footer = () => {
   return (
@@ -49,12 +50,12 @@ const Footer = () => {
 
         {/* Logo Section */}
         <div className="footer-logo-section">
-          <MetallicPaintUse />
+          <img src={FooterLogo} alt="" />
         </div>
 
         {/* Lower Content - Copyright & Links */}
         <div className="lower-content">
-          <p className="copyright">© 2025 Metatrybe. All Rights Reserved.</p>
+          <p className="copyright">© 2026 Metatrybe. All Rights Reserved.</p>
           <div className="legal-links">
             <a href="#">Terms Of Use</a>
             <a href="#">Privacy Policy</a>

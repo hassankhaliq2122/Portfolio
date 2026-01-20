@@ -55,81 +55,73 @@ const HomePageProjects = () => {
       const panels = panelsRef.current.filter(Boolean);
       const totalPanels = panels.length;
 
-      // Set all panels except first to invisible initially
+      // Set initial states
+      // Panel 0: Visible, y: 0
+      // Others: Invisible, y: 50 (entering from bottom)
       panels.forEach((panel, i) => {
-        if (i > 0) {
-          gsap.set(panel, { autoAlpha: 0, y: 30 });
+        if (i === 0) {
+          gsap.set(panel, { autoAlpha: 1, y: 0 });
+        } else {
+          gsap.set(panel, { autoAlpha: 0, y: 50 });
         }
       });
 
-      // Create the main pinned scroll trigger
-      // Using functional end value and invalidateOnRefresh for production stability
-
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top top",
-        end: () => `+=${window.innerHeight * (totalPanels - 1)}`,
-        pin: true,
-        pinSpacing: true, // Explicit
-        scrub: 0.5, // 0.5s smoothing
-        anticipatePin: 1,
-        fastScrollEnd: true,
-        preventOverlaps: true,
-        invalidateOnRefresh: true, // Recalculate values on resize/refresh
-        // CRITICAL FIX: Lock the panel state when leaving/re-entering
-        onLeave: () => {
-          // Force last panel visible when leaving
-          panels.forEach((panel, i) => {
-            gsap.set(panel, {
-              autoAlpha: i === totalPanels - 1 ? 1 : 0,
-              y: 0,
-              overwrite: true,
-            });
-          });
-        },
-        onLeaveBack: () => {
-          // Force first panel visible when leaving backwards
-          panels.forEach((panel, i) => {
-            gsap.set(panel, {
-              autoAlpha: i === 0 ? 1 : 0,
-              y: 0,
-              overwrite: true,
-            });
-          });
-        },
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const currentIndex = Math.min(
-            Math.floor(progress * totalPanels),
-            totalPanels - 1,
-          );
-
-          // Show/hide panels based on scroll progress
-          panels.forEach((panel, i) => {
-            if (i === currentIndex) {
-              gsap.to(panel, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.5,
-                overwrite: true,
-              });
-            } else {
-              gsap.to(panel, {
-                autoAlpha: 0,
-                y: i < currentIndex ? -30 : 30,
-                duration: 0.5,
-                overwrite: true,
-              });
-            }
-          });
+      // Create a timeline connected to scroll
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: () => `+=${window.innerHeight * (totalPanels - 1.5)}`, // Reduced scroll length for faster transition
+          pin: true,
+          pinSpacing: true,
+          scrub: 1, // Smooth scrubbing to match PremiumAnimation
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
-      // Force refresh AFTER setup with a small delay
+      // Build the timeline transitions
+      // For each panel transition:
+      // 1. Current Panel fades out and moves up
+      // 2. Next Panel fades in and moves to center
+      panels.forEach((panel, i) => {
+        if (i < totalPanels - 1) {
+          const nextPanel = panels[i + 1];
+
+          tl.add(`step${i}`)
+            // Current panel leaves
+            .to(
+              panel,
+              {
+                autoAlpha: 0,
+                y: -50,
+                duration: 1,
+                ease: "power1.inOut",
+              },
+              `step${i}`,
+            )
+            // Next panel enters
+            .to(
+              nextPanel,
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 1,
+                ease: "power1.inOut",
+              },
+              `step${i}`,
+            ); // Prefer overlapping slightly? Sync is usually fine.
+
+          // Add a small pause/gap? No, continuous is usually smoother.
+        }
+      });
+
+      // Force refresh
       gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
 
       return () => {
-        ScrollTrigger.getAll().forEach((st) => st.kill());
+        if (tl.scrollTrigger) tl.scrollTrigger.kill();
+        tl.kill();
       };
     },
     { scope: containerRef },

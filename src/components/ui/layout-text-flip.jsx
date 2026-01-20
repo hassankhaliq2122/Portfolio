@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "../../lib/utils";
-import "../../JsrepoComponents/GradientText.css";
+// import "../../JsrepoComponents/GradientText.css";
 
 export const LayoutTextFlip = ({
   text = "",
@@ -53,9 +53,10 @@ export const LayoutTextFlip = ({
             }}
             className={cn("ltf-word inline-block text-content")}
             style={{
-              backgroundImage: 'linear-gradient(to right, #02A7FF, #1CE295, #2C65E1, #D8E12B)',
-              backgroundSize: '300% 100%',
-              animation: 'gradient-shift 8s ease infinite'
+              backgroundImage:
+                "linear-gradient(to right, #02A7FF, #1CE295, #2C65E1, #D8E12B)",
+              backgroundSize: "300% 100%",
+              animation: "gradient-shift 8s ease infinite",
             }}
           >
             {words[currentIndex]}

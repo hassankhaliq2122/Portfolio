@@ -20,17 +20,17 @@
   font-weight: 600;
   color: #000000;
 }
-.resultsRight{
+.results-inline-wrapper {
   display: flex;
-  justify-content: end;
-  color: #000000;
-  margin-right: 5rem;
+  align-items: baseline; /* or center, depending on preference */
+  gap: 35rem; /* Space between title and text */
 }
 
-.resultsRight p{
+.resultsLeft p {
   font-size: 16px;
   font-weight: 400;
   color: #5C6670;
+  margin: 0;
 }
 .resultsTop {
   width: 100%;
@@ -168,6 +168,9 @@
 
   /* MAGIC: CUT OUT CENTER */
   -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
