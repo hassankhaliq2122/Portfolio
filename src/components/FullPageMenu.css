@@ -186,6 +186,9 @@
   /* margin-bottom: 20px; */
   text-transform: uppercase;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .services-list-menu {

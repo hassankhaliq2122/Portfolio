@@ -7,7 +7,7 @@ import ArrowButton from "./ArrowButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import ArrowBlue from "../assets/icons/ArrowBlue.png";
+import ArrowBlue from "../assets/icons/ArrowBlue.svg";
 
 const PremiumAnimation = () => {
   const containerRef = useRef(null);
@@ -204,7 +204,7 @@ const PremiumAnimation = () => {
         <div className="arrow-btn-wrapper">
           <ArrowButton
             text="Contact Us"
-            style={{ background: "#FFFFFF", color: "#2C65E1" }}
+            innerStyle={{ background: "#FFFFFF", color: "#2C65E1" }}
             icon={ArrowBlue}
           />
         </div>

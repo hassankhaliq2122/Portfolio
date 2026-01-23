@@ -1,0 +1,28 @@
+.scroll-progress-circle {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  z-index: 9999; /* High z-index to stay on top */
+  pointer-events: none; /* Let clicks pass through */
+  mix-blend-mode: difference; /* Optional: Cool effect over dark/light backgrounds */
+  color: #2563EB; /* Fallback color */
+}
+
+.progress-ring__circle {
+  transition: all 0.1s linear; /* Smooth fill update */
+  transform: rotate(-90deg); /* Start from top */
+  transform-origin: 50% 50%;
+  fill: transparent;
+  stroke: #2563EB; /* Blue stroke */
+  stroke-width: 4; /* Thickness */
+  stroke-linecap: round; /* Rounded ends */
+}
+
+/* Optional: Background circle for better visibility */
+.progress-ring__bg {
+  fill: transparent;
+  stroke: rgba(37, 99, 235, 0.1); /* Faint blue */
+  stroke-width: 4;
+}

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import BlueBorderButton from "./BlueBorderButton";
-import ArrowBlue from "../assets/icons/ArrowBlue.png";
-import Arrow from "../assets/icons/arrow.png";
-import ArrowBlack from "../assets/icons/ArrowBlack.png";
+import ArrowBlue from "../assets/icons/ArrowBlue.svg";
+import Arrow from "../assets/icons/arrow.svg";
+import ArrowBlack from "../assets/icons/ArrowBlack.svg";
 import "./FullPageMenu.css";
 import MenuFooter from "../assets/homePage/MenuFooter.png";
 const menuItems = [

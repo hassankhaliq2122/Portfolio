@@ -1,0 +1,69 @@
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.splash-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-ring-container {
+  position: absolute;
+  /* Adjust this to position the ring above the M initially if needed, 
+     but GSAP handles the movement. Centered by default. */
+  z-index: 2;
+  /* We might want it slightly above the text visually */
+  transform: translateY(-50px); /* Initial offset helper */
+}
+
+.splash-ring {
+  width: 52px; /* Match SVG size */
+  height: 52px;
+  display: block;
+}
+
+.splash-text {
+  font-family: 'Inter', sans-serif; /* Or project font */
+  font-size: 80px; /* Big and bold */
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  letter-spacing: -2px; /* Tight, premium feel */
+  position: relative;
+  overflow: hidden; /* For masking effects if we wanted */
+}
+
+.splash-text span {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Specific tweaking for the M if we need it to be distinct */
+.letter-m {
+    position: relative;
+}
+
+/* Tablet / Mobile responsiveness */
+@media (max-width: 768px) {
+    .splash-text {
+        font-size: 40px;
+    }
+    .splash-ring {
+        width: 32px;
+        height: 32px;
+    }
+}

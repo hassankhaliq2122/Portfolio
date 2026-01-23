@@ -12,7 +12,6 @@ import Working from "../components/Working";
 import ServicesDrawer from "../components/ServicesDrawer";
 import Results from "../components/Results";
 import "./Home.css";
-
 const HomePageProjects = React.lazy(
   () => import("../components/HomePageProjects"),
 );
@@ -97,6 +96,7 @@ const Home = () => {
           <ArrowButton
             text="Start Your Project"
             className="start-project-btn arrow-btn"
+            enableStarBorder={true}
           />
         </div>
         <AnimatedContentUse />

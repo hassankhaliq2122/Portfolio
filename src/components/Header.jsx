@@ -3,6 +3,7 @@ import headerLogo from "../assets/logo/HeaderLogo.png";
 import "./Header.css";
 import ArrowButton from "./ArrowButton";
 import FullPageMenu from "./FullPageMenu";
+import { AnimatedThemeToggler } from "./ui/AnimatedThemeToggler";
 
 const Header = () => {
   return (
@@ -12,6 +13,7 @@ const Header = () => {
           <header>
             <img
               src={headerLogo}
+              className="header-logo-container"
               style={{ width: "166px", height: "52px" }}
               alt="Header Logo"
             />
@@ -21,7 +23,8 @@ const Header = () => {
               <li>
                 <p className="headerText">Let's brand up your website</p>
               </li>
-              <ArrowButton text="Book a Call" />
+              <AnimatedThemeToggler className="text-gray-700 dark:text-gray-200" />
+              <ArrowButton text="Book a call" />
               <FullPageMenu />
             </ul>
           </div>

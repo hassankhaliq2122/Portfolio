@@ -23,6 +23,11 @@
     color: #000000;
     width: auto;
     max-width: 15rem;
+    transition: color 0.3s ease;
+}
+
+.dark .headerText {
+    color: #ffffff;
 }
 
 /* Tablet Styles */
