@@ -36,71 +36,132 @@ const FullPageMenu = () => {
 
   useEffect(() => {
     if (isOpen) {
-      // Animate menu opening
-      gsap.to(overlayRef.current, {
+      // SET INITIAL STATES
+      gsap.set(menuRef.current, {
+        visibility: "visible",
         opacity: 1,
-        duration: 0.3,
-        ease: "power2.out",
-      });
-      gsap.to(menuRef.current, {
-        x: 0,
-        duration: 0.5,
-        ease: "power4.out",
+        clipPath: "inset(0 100% 0 0)", // Start hidden (reveal from left to right or modify for other feel)
+        // Let's use vertical reveal as requested "non-directional" often implies simple fade or expand
+        // User suggested "clip-path or scaleY"
+        // Let's do a center vertical reveal:
+        clipPath: "inset(50% 0 50% 0)",
       });
 
-      // Stagger menu items
-      gsap.fromTo(
+      // Animate menu opening
+      const tl = gsap.timeline();
+
+      tl.to(overlayRef.current, {
+        opacity: 1,
+        duration: 0.1,
+        ease: "power2.out",
+      }).to(
+        menuRef.current,
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 0.1,
+          ease: "power3.out",
+        },
+        "-=0.1",
+      );
+
+      // Stagger menu items (blur + fade + slight Y)
+      tl.fromTo(
         menuItemRefs.current,
-        { y: 50, opacity: 0 },
+        { y: 20, opacity: 0, filter: "blur(5px)" },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
+          filter: "blur(0px)",
+          duration: 0.2,
           stagger: 0.1,
-          ease: "power3.out",
-          delay: 0.2,
+          ease: "power2.out",
         },
+        "-=0.2",
       );
 
       // Stagger service items
-      gsap.fromTo(
+      tl.fromTo(
         serviceRefs.current,
-        { y: 30, opacity: 0 },
+        { y: 20, opacity: 0, filter: "blur(10px)" },
         {
           y: 0,
           opacity: 1,
-          duration: 0.5,
-          stagger: 0.08,
-          ease: "power3.out",
-          delay: 0.3,
+          filter: "blur(0px)",
+          duration: 0.2,
+          stagger: 0.05,
+          ease: "power2.out",
         },
+        "-=0.2",
       );
 
       // Stagger contact items
-      gsap.fromTo(
+      tl.fromTo(
         contactRefs.current,
-        { y: 20, opacity: 0 },
+        { y: 20, opacity: 0, filter: "blur(10px)" },
         {
           y: 0,
           opacity: 1,
-          duration: 0.4,
+          filter: "blur(0px)",
+          duration: 0.2,
           stagger: 0.1,
-          ease: "power3.out",
-          delay: 0.5,
+          ease: "power2.out",
         },
+        "-=0.2",
+      );
+
+      // Footer animation
+      tl.fromTo(
+        ".menuRight-footer",
+        { y: 20, opacity: 0, filter: "blur(10px)" },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.2,
+          ease: "power2.out",
+        },
+        "-=0.2",
       );
     } else {
       // Animate menu closing
-      gsap.to(overlayRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.in",
+      const tl = gsap.timeline({
+        onComplete: () => {
+          gsap.set(menuRef.current, { visibility: "hidden" });
+        },
       });
-      gsap.to(menuRef.current, {
-        x: "-100%",
-        duration: 0.4,
-        ease: "power3.in",
-      });
+
+      tl.to(
+        [
+          menuItemRefs.current,
+          serviceRefs.current,
+          contactRefs.current,
+          ".menuRight-footer",
+        ],
+        {
+          opacity: 0,
+          filter: "blur(10px)",
+          duration: 0.2,
+          ease: "power2.in",
+        },
+      )
+        .to(
+          menuRef.current,
+          {
+            clipPath: "inset(50% 0 50% 0)",
+            duration: 0.3,
+            ease: "power3.in",
+          },
+          "-=0.1",
+        )
+        .to(
+          overlayRef.current,
+          {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.in",
+          },
+          "-=0.2",
+        );
     }
   }, [isOpen]);
 
