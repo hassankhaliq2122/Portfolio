@@ -1,9 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: 'General Sans', sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
