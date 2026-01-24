@@ -1,10 +1,15 @@
-.services-drawer-section {
+ .services-drawer-section {
   width: 100%;
   background-color: #fff;
   padding: 100px 5%;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
+  position: relative; /* Ensure relative positioning for TubeCursor absolute/fixed context if needed, though Tube is fixed */
+}
+
+.dark .services-drawer-section {
+  background-color: transparent;
 }
 
 .services-drawer-container {
@@ -27,6 +32,11 @@
   line-height: 1.15;
   color: #1a1a1a;
   margin: 0;
+  transition: color 0.3s ease;
+}
+
+.dark .services-title {
+  color: #ffffff;
 }
 
 .services-note {
@@ -34,6 +44,11 @@
   color: #4a4a4a;
   margin-top: 350px;
   font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.dark .services-note {
+  color: #a0a0a0;
 }
 
 /* Right Column (Accordion) */

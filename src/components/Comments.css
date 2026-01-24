@@ -8,12 +8,12 @@
     gap: 40px;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif; /* Assuming Inter or system font */
-    :hover{
-        color: #000;
-        
-    }
+ 
 }
-
+.main-quote{
+    font-size: 32px;
+    font-weight: 600;
+}
 .comments-left {
     flex: 0 0 250px;
     padding-top: 10px;

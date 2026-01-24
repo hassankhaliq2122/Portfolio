@@ -1,5 +1,5 @@
 import React from "react";
-import { MaskContainer } from "./ui/svg-mask-effect";
+// import { MaskContainer } from "./ui/svg-mask-effect";
 import Star from "../assets/icons/Star.png";
 import "./Comments.css";
 const Comments = () => {
@@ -13,7 +13,7 @@ const Comments = () => {
       </div>
 
       <div className="comments-right">
-        {/* Main Testimonial with Mask Effect */}
+        {/* Main Testimonial */}
         <div className="main-testimonial">
           <div className="star-rating">
             {[...Array(5)].map((_, i) => (
@@ -22,18 +22,7 @@ const Comments = () => {
             <span className="project-type">(Luxury Business Website)</span>
           </div>
 
-          <MaskContainer
-            revealText={
-              <div className="mask-quote-text" >
-                {mainQuote}
-              </div>
-            }
-            className="comments-mask-container"
-            size={0} // Default mask size (hidden or small)
-            revealSize={0} // Flashlight size
-          >
-        
-          </MaskContainer>
+          <p className="main-quote">{mainQuote}</p>
 
           <div className="quote-author-block">
             <h4>Darbpay</h4>

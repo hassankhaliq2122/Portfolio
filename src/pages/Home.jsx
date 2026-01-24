@@ -11,6 +11,7 @@ import SplitText from "../components/ui/SplitText";
 import Working from "../components/Working";
 import ServicesDrawer from "../components/ServicesDrawer";
 import Results from "../components/Results";
+import TubeCursor from "../components/TubeCursor";
 import "./Home.css";
 const HomePageProjects = React.lazy(
   () => import("../components/HomePageProjects"),

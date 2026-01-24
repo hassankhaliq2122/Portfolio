@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import SmoothScroll from "./components/SmoothScroll";
 import SplashScreen from "./components/SplashScreen";
+import TubeCursor from "./components/TubeCursor";
 import "./App.css";
 // import IntroCover from "./components/IntroCover";
 
@@ -16,6 +17,7 @@ const App = () => {
           <Home />
         </Suspense>
       </SmoothScroll>
+      <TubeCursor />
     </div>
   );
 };

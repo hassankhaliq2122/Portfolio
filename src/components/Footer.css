@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.dark .footer {
+  background-color: transparent; /* Or rgba(10, 10, 10, 0.9) if you want some dimming */
+}
+
 .footer-container {
   width: 100%;
   max-width: 100%;

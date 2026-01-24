@@ -1,0 +1,26 @@
+/* TubeCursor Component Styles */
+.tube-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.tube-cursor-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Optional: Add this class to the parent container */
+.tube-cursor-container {
+  position: relative;
+  overflow: hidden;
+}

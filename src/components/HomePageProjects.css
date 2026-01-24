@@ -14,6 +14,10 @@
   box-sizing: border-box;
 }
 
+.dark .work-delivered-wrapper {
+    background-color: transparent !important;
+}
+
 .static-header {
   position: absolute;
   top: 60px;
@@ -167,16 +171,17 @@
 @media (max-width: 1024px) {
   .project-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto; /* Let rows allow sizing */
     height: auto;
     gap: 40px;
-    padding-top: 100px; /* Add padding for header on mobile */
+    padding-top: 100px;
+    padding-bottom: 40px;
   }
   
   .project-panel {
       overflow-y: auto;
       justify-content: flex-start;
-      padding-bottom: 100px;
+      padding-bottom: 60px;
   }
   
   .static-header {
@@ -190,15 +195,48 @@
     align-items: flex-start;
     padding: 0;
     justify-content: center;
+    width: 100%;
   }
   
   .col-right {
-      flex-direction: column-reverse; /* Button then desc? or keep same */
+      flex-direction: column-reverse;
+      align-items: center; /* Center content on mobile */
+      text-align: center;
+  }
+
+  .col-left {
+      align-items: center;
+      text-align: center;
+  }
+  
+  .project-desc {
+      max-width: 100%;
+      text-align: center;
   }
   
   .project-footer {
       position: relative;
       bottom: auto;
       margin-top: 40px;
+      transform: none;
+      left: 0;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      width: 100%;
   }
+}
+
+@media (max-width: 768px) {
+    .project-grid {
+        padding-top: 60px;
+        gap: 30px;
+    }
+    
+    .static-header h1 {
+        font-size: 32px;
+    }
+    
+    .project-title {
+        font-size: 32px;
+    }
 }

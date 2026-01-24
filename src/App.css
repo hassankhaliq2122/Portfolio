@@ -25,7 +25,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2563EB;
+  background: #2C65E1;
   border-radius: 8px; /* Rounded pill shape */
   transition: background 0.3s ease;
 }

@@ -175,9 +175,75 @@ const FullPageMenu = () => {
 
   return (
     <>
-      {/* Menu Button */}
-      <div ref={buttonRef} className="menu-button-wrapper" onClick={toggleMenu}>
+      {/* Menu Button (Desktop) */}
+      <div
+        ref={buttonRef}
+        className="menu-button-wrapper desktop-menu-btn"
+        onClick={toggleMenu}
+      >
         <BlueBorderButton text={isOpen ? "Exit" : "Menu"} />
+      </div>
+
+      {/* Menu Button (Mobile) */}
+      <div
+        className="mobile-menu-btn"
+        onClick={toggleMenu}
+        style={{ zIndex: 9999, position: "relative", cursor: "pointer" }}
+      >
+        {isOpen ? (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6L6 18"
+              stroke="#000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M6 6L18 18"
+              stroke="#000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        ) : (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 12H21"
+              stroke="#000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M3 6H21"
+              stroke="#000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M3 18H21"
+              stroke="#000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
       </div>
 
       {/* Overlay */}

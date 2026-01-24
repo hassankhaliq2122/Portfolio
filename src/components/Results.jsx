@@ -2,14 +2,17 @@ import React from "react";
 import "./Results.css";
 import CountUpUse from "./CountUpUse";
 import GlowingBorderWrapper from "./ui/GlowingBorder";
+import TubeCursor from "./TubeCursor";
+
 const Results = () => {
   return (
     <div className="results-container">
+      <TubeCursor />
       <div className="resultsLeft">
         <h1>Proven Result</h1>
         <div className="results-inline-wrapper">
           <h1>Powerful Impact.</h1>
-          <p>In Service For Premium Brands Over The globe</p>
+          <p>In Service For Premium Brands Over The Globe</p>
         </div>
       </div>
       <div className="resultBoxes">

@@ -1,5 +1,6 @@
 import React from "react";
 import arrow from "../assets/icons/arrow.svg";
+import arrowBlue from "../assets/icons/ArrowBlue.svg";
 import "./ArrowButton.css";
 
 const ArrowButton = ({
