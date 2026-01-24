@@ -1,0 +1,147 @@
+.skw-pages {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+}
+
+/* PAGE */
+.skw-page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+/* PAGE HALF */
+.skw-page__half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+  transition: transform 1s;
+}
+
+.skw-page__half--left {
+  left: 0;
+  transform: translate3d(-32.4vh, 100%, 0);
+}
+
+.skw-page__half--right {
+  left: 50%;
+  transform: translate3d(32.4vh, -100%, 0);
+}
+
+.skw-page.active .skw-page__half {
+  transform: translate3d(0, 0, 0);
+}
+
+/* SKEWED WRAPPER */
+.skw-page__skewed {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 140%;
+  height: 100%;
+  transform: skewX(-18deg);
+  /* background: #000; */
+}
+
+.skw-page__half--left .skw-page__skewed {
+  left: -40%;
+}
+
+.skw-page__half--right .skw-page__skewed {
+  right: -40%;
+}
+
+/* CONTENT */
+.skw-page__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 30%;
+  color: #000000;
+  transform: skewX(18deg);
+  transition: transform 1s, opacity 1s;
+  background-size: cover;
+}
+
+.skw-page__half--left .skw-page__content {
+  transform-origin: 100% 0;
+}
+
+.skw-page__half--right .skw-page__content {
+  transform-origin: 0 100%;
+}
+
+.skw-page.inactive .skw-page__content {
+  opacity: 0.5;
+  transform: skewX(18deg) scale(0.95);
+}
+
+/* TEXT */
+.skw-page__heading {
+  margin-bottom: 24px;
+  /* text-transform: uppercase; REMOVED per design ref */
+  font-size: 56px;
+  font-weight: 700;
+  text-align: left;
+  line-height: 1.1;
+  color: #000;
+}
+
+.skw-page__description {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left;
+  color: #555;
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+
+.skw-page__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.skw-page__list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: #556;
+  font-weight: 500;
+}
+
+.check-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #dbeafe; /* Light blue bg */
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.skw-page__btn-wrapper {
+  margin-right: auto;
+}
+
+.skw-page__link {
+  color: #FFA0A0;
+}
+
+/* PAGE THEMES */
+/* PAGE THEMES - Now handled via inline styles in React component */

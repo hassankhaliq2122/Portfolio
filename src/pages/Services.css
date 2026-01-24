@@ -1,0 +1,9 @@
+.service-page-container {
+  width: 100%;
+  max-width: 1280px;
+  /* min-height: 100vh; REMOVED to avoid unnecesary height on header wrapper */
+  margin: 0 auto;
+  position: relative;
+
+  box-sizing: border-box;
+}

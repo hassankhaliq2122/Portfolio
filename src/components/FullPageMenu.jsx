@@ -52,16 +52,16 @@ const FullPageMenu = () => {
 
       tl.to(overlayRef.current, {
         opacity: 1,
-        duration: 0.1,
+        duration: 0.5,
         ease: "power2.out",
       }).to(
         menuRef.current,
         {
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 0.1,
+          duration: 0.8,
           ease: "power3.out",
         },
-        "-=0.1",
+        "-=0.5",
       );
 
       // Stagger menu items (blur + fade + slight Y)
@@ -72,11 +72,11 @@ const FullPageMenu = () => {
           y: 0,
           opacity: 1,
           filter: "blur(0px)",
-          duration: 0.2,
+          duration: 0.6,
           stagger: 0.1,
           ease: "power2.out",
         },
-        "-=0.2",
+        "-=0.4",
       );
 
       // Stagger service items
@@ -87,11 +87,11 @@ const FullPageMenu = () => {
           y: 0,
           opacity: 1,
           filter: "blur(0px)",
-          duration: 0.2,
+          duration: 0.6,
           stagger: 0.05,
           ease: "power2.out",
         },
-        "-=0.2",
+        "-=0.4",
       );
 
       // Stagger contact items
@@ -102,11 +102,11 @@ const FullPageMenu = () => {
           y: 0,
           opacity: 1,
           filter: "blur(0px)",
-          duration: 0.2,
+          duration: 0.6,
           stagger: 0.1,
           ease: "power2.out",
         },
-        "-=0.2",
+        "-=0.4",
       );
 
       // Footer animation
@@ -117,10 +117,10 @@ const FullPageMenu = () => {
           y: 0,
           opacity: 1,
           filter: "blur(0px)",
-          duration: 0.2,
+          duration: 0.6,
           ease: "power2.out",
         },
-        "-=0.2",
+        "-=0.4",
       );
     } else {
       // Animate menu closing
@@ -140,7 +140,7 @@ const FullPageMenu = () => {
         {
           opacity: 0,
           filter: "blur(10px)",
-          duration: 0.2,
+          duration: 0.4,
           ease: "power2.in",
         },
       )
@@ -148,19 +148,19 @@ const FullPageMenu = () => {
           menuRef.current,
           {
             clipPath: "inset(50% 0 50% 0)",
-            duration: 0.3,
+            duration: 0.6,
             ease: "power3.in",
           },
-          "-=0.1",
+          "-=0.2",
         )
         .to(
           overlayRef.current,
           {
             opacity: 0,
-            duration: 0.3,
+            duration: 0.4,
             ease: "power2.in",
           },
-          "-=0.2",
+          "-=0.3",
         );
     }
   }, [isOpen]);
