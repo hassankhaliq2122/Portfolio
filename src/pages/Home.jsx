@@ -90,7 +90,7 @@ const Home = () => {
         <h1 className="home-title"></h1>
         <BlurText />
         <BlurText
-          text="Metatrybe delivers premium   design and highend web development services for brands that want more than just a website — they want authority, conversions and growth."
+          text="Metatrybe delivers premium design and highend web development services for brands that want more than just a website — they want authority, conversions and growth."
           className="home-description"
           animateBy="letters"
           direction="bottom"
