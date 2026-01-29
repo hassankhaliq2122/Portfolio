@@ -126,15 +126,51 @@
   line-height: 1.5;
 }
 
-.premium-content .arrow-btn-wrapper {
+.premium-content .premium-btn-container {
   opacity: 0; /* JS will animate */
   transform: translateY(20px);
 }
 
-/* Override ArrowButton styles if needed */
-.premium-content .arrow-btn-wrapper button {
-  background-color: #ffffff !important;
-  color: #000000; /* Assuming black text for white button */
+/* Override ArrowButton styles to match the premium reference image */
+.premium-content .premium-btn-container .arrow-btn {
+  background: white !important;
+  color: #2C65E1 !important;
+  border-radius: 10px !important; /* Rounded pill shape */
+  padding: 0 32px !important; /* Increased padding for better look */
+  height: 60px !important; /* Increased height */
+  min-width: 220px !important; /* Increased width to accommodate icon and text */
+  max-width: none !important;
+  font-size: 18px !important; /* Slightly larger text */
+  font-weight: 700 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  white-space: nowrap !important; /* Prevent text wrapping */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.premium-content .premium-btn-container .arrow-btn:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.premium-content .premium-btn-container .arrow-btn .arrow-btn-text {
+  color: #2C65E1 !important;
+  font-weight: 700;
+  margin-right: 12px;
+}
+
+/* Ensure the icon color is correct */
+.premium-content .premium-btn-container .arrow-btn .arrow-btn-icon {
+  filter: none !important; /* Original SVG color */
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.premium-content .premium-btn-container .arrow-btn .arrow-btn-wrapper {
+  width: 38px !important;
+  height: 38px !important;
 }
 
 /* Ripple effect container */

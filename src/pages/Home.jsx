@@ -83,6 +83,9 @@ const Home = () => {
     <>
       <div className="home-container">
         <Header />
+        <div className="tagline">
+          <h3>Choice of Top B2B Companies</h3>
+        </div>
         <TextAnimation />
         <h1 className="home-title"></h1>
         <BlurText />

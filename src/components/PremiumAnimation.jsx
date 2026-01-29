@@ -201,10 +201,13 @@ const PremiumAnimation = () => {
           If your brand deserves better than average, let’s build something
           premium, strategic, and designed to perform at the highest level.
         </p>
-        <div className="arrow-btn-wrapper">
+        <div className="premium-btn-container">
           <ArrowButton
             text="Contact Us"
-            innerStyle={{ background: "#FFFFFF", color: "#2C65E1" }}
+            innerStyle={{
+              background: "#FFFFFF",
+              color: "#2C65E1",
+            }}
             icon={ArrowBlue}
           />
         </div>

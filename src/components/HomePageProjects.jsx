@@ -158,7 +158,7 @@ const HomePageProjects = () => {
                 <p className="project-desc">{project.description}</p>
                 <ArrowButton
                   text="View Full Case Study"
-                  style={{ maxWidth: "280px", width: "auto" }}
+                  style={{ maxWidth: "235px", width: "auto" }}
                 />
               </div>
             </div>
