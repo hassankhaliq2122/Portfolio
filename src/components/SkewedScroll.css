@@ -18,6 +18,9 @@
   top: 0;
   width: 50%;
   height: 100vh;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .skw-page__half--left {
@@ -28,10 +31,6 @@
 .skw-page__half--right {
   left: 50%;
   transform: translate3d(32.4vh, -100%, 0);
-}
-
-.skw-page.active .skw-page__half {
-  transform: translate3d(0, 0, 0);
 }
 
 /* SKEWED WRAPPER */
@@ -68,6 +67,9 @@
   color: #000000;
   transform: skewX(18deg);
   background-size: cover;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .skw-page__half--left .skw-page__content {
@@ -76,11 +78,6 @@
 
 .skw-page__half--right .skw-page__content {
   transform-origin: 0 100%;
-}
-
-.skw-page.inactive .skw-page__content {
-  opacity: 0.5;
-  transform: skewX(18deg) scale(0.95);
 }
 
 /* TEXT */
