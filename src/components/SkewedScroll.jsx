@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import "./SkewedScroll.css";
 import service1 from "../assets/ServicesPage/services1.png";
 import service2 from "../assets/ServicesPage/services2.png";
@@ -18,7 +19,7 @@ const pagesData = [
     description:
       "We design premium, user-focused websites that blend strategy, aesthetics, and usability. From UX architecture to high-fidelity UI, every detail is crafted to elevate your brand and drive engagement.",
     img: service1,
-    darkBg: false, // Right side dark (content on left)
+    darkBg: false,
     listItems: [
       "UX Research & Information Architecture",
       "Wireframing & User Flows",
@@ -34,7 +35,7 @@ const pagesData = [
     description:
       "Transform your ideas into powerful, scalable web applications with our expert development team. We build custom solutions using the latest technologies and best practices.",
     img: service2,
-    darkBg: true, // Right side dark (content on left)
+    darkBg: true,
     listItems: [
       "Custom Web Applications",
       "RESTful API Development",
@@ -50,7 +51,7 @@ const pagesData = [
     description:
       "Create stunning, easy-to-manage WordPress websites that empower you to control your content. From custom themes to complex plugins, we deliver WordPress solutions that scale with your business.",
     img: service3,
-    darkBg: false, // Right side dark (content on left)
+    darkBg: false,
     listItems: [
       "Custom WordPress Themes",
       "Plugin Development & Integration",
@@ -66,7 +67,7 @@ const pagesData = [
     description:
       "Create stunning, easy-to-manage WordPress websites that empower you to control your content. From custom themes to complex plugins, we deliver WordPress solutions that scale with your business.",
     img: service4,
-    darkBg: true, // Right side dark (content on left)
+    darkBg: true,
     listItems: [
       "Custom WordPress Themes",
       "Plugin Development & Integration",
@@ -80,57 +81,106 @@ const pagesData = [
 
 export default function SkewedScroll() {
   const containerRef = useRef(null);
-  const [curPage, setCurPage] = useState(1);
-  const totalPages = pagesData.length;
+  const panelsRef = useRef([]);
 
-  useEffect(() => {
-    const container = containerRef.current;
+  useGSAP(
+    () => {
+      const panels = panelsRef.current.filter(Boolean);
+      const totalPanels = panels.length;
 
-    // Create ScrollTrigger
-    const st = ScrollTrigger.create({
-      trigger: container,
-      start: "top top",
-      end: `+=${totalPages * 100}%`, // Scroll distance proportional to pages
-      pin: true,
-      scrub: 0.5, // Smooth scrubbing
-      onUpdate: (self) => {
-        // Calculate current page based on scroll progress
-        // progress is 0 to 1
-        // Map to 1 to totalPages
-        // We use Math.min/max to clamp
-        const progress = self.progress;
-        // Divide progress into segments for each page
-        // e.g., 4 pages. 0-0.25 -> page 1, 0.25-0.5 -> page 2, etc.
-        // Actually, logic: if on page 1, show page 1. Scroll triggers switch.
-        // Let's use simpler logic:
-        // Page index = floor(progress * totalPages)
-        // Clamp to 0 to totalPages - 1
-        let pageIndex = Math.floor(progress * totalPages);
-        if (pageIndex >= totalPages) pageIndex = totalPages - 1;
-        setCurPage(pageIndex + 1);
-      },
-    });
+      // Initial States
+      panels.forEach((panel, i) => {
+        const leftHalf = panel.querySelector(".skw-page__half--left");
+        const rightHalf = panel.querySelector(".skw-page__half--right");
+        const content = panel.querySelectorAll(".skw-page__content");
 
-    return () => {
-      st.kill();
-    };
-  }, [totalPages]);
+        if (i === 0) {
+          // First panel visible
+          gsap.set([leftHalf, rightHalf], { x: 0, y: 0 });
+          gsap.set(content, { opacity: 1, scale: 1 });
+        } else {
+          // Others hidden/inactive
+          gsap.set(leftHalf, { x: "-32.4vh", y: "100%" });
+          gsap.set(rightHalf, { x: "32.4vh", y: "-100%" });
+          gsap.set(content, { opacity: 0.5, scale: 0.95 });
+        }
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: `+=${window.innerHeight * (totalPanels * 3)}`, // Increased length for "one scroll one pic" feel
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+        },
+      });
+
+      panels.forEach((panel, i) => {
+        if (i < totalPanels - 1) {
+          const nextPanel = panels[i + 1];
+          const currContent = panel.querySelectorAll(".skw-page__content");
+
+          const nextLeft = nextPanel.querySelector(".skw-page__half--left");
+          const nextRight = nextPanel.querySelector(".skw-page__half--right");
+          const nextContent = nextPanel.querySelectorAll(".skw-page__content");
+
+          tl.add(`step${i}`)
+            // Current panel content fades out/scales down
+            .to(
+              currContent,
+              {
+                opacity: 0.5,
+                scale: 0.95,
+                duration: 1,
+                ease: "none", // Scrub controls ease
+              },
+              `step${i}`,
+            )
+            // Next panel slides in
+            .to(
+              [nextLeft, nextRight],
+              {
+                x: 0,
+                y: 0,
+                duration: 1,
+                ease: "none",
+              },
+              `step${i}`,
+            )
+            // Next panel content fades in/scales up
+            .to(
+              nextContent,
+              {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "none",
+              },
+              `step${i}`,
+            );
+        }
+      });
+
+      // Hold the last panel for a bit so it doesn't unpin immediately after the transition
+      tl.to({}, { duration: 1 }); // Dummy wait
+    },
+    { scope: containerRef },
+  );
 
   return (
     <div
       ref={containerRef}
       className="skw-pages-container"
-      style={{ height: "100vh", position: "relative" }}
+      style={{ height: "100vh", position: "relative", overflow: "hidden" }}
     >
-      {" "}
-      {/* Add container wrapper for pinning */}
       <div className="skw-pages">
-        {pagesData.map((page) => (
+        {pagesData.map((page, index) => (
           <div
             key={page.id}
-            className={`skw-page skw-page-${page.id} ${
-              page.id === curPage ? "active" : ""
-            } ${page.id < curPage ? "inactive" : ""}`}
+            className={`skw-page skw-page-${page.id}`}
+            ref={(el) => (panelsRef.current[index] = el)}
           >
             {/* Left Half */}
             <div className="skw-page__half skw-page__half--left">
@@ -139,15 +189,10 @@ export default function SkewedScroll() {
                   className="skw-page__content"
                   style={
                     !page.darkBg
-                      ? {
-                          backgroundColor: "#ffffff",
-                        }
-                      : {
-                          backgroundImage: `url(${page.img})`,
-                        }
+                      ? { backgroundColor: "#ffffff" }
+                      : { backgroundImage: `url(${page.img})` }
                   }
                 >
-                  {/* Content for Left Side (if it's the text side - i.e. NOT darkBg) */}
                   {!page.darkBg && (
                     <>
                       <h2 className="skw-page__heading">{page.heading}</h2>
@@ -156,8 +201,8 @@ export default function SkewedScroll() {
                       </p>
                       {page.listItems && page.listItems.length > 0 && (
                         <ul className="skw-page__list">
-                          {page.listItems.map((item, index) => (
-                            <li key={index} className="skw-page__list-item">
+                          {page.listItems.map((item, idx) => (
+                            <li key={idx} className="skw-page__list-item">
                               <span className="check-icon-wrapper">
                                 <Check
                                   size={16}
@@ -188,15 +233,10 @@ export default function SkewedScroll() {
                   className="skw-page__content"
                   style={
                     page.darkBg
-                      ? {
-                          backgroundColor: "#ffffff",
-                        }
-                      : {
-                          backgroundImage: `url(${page.img})`,
-                        }
+                      ? { backgroundColor: "#ffffff" }
+                      : { backgroundImage: `url(${page.img})` }
                   }
                 >
-                  {/* Content for Right Side (if it's the text side - i.e. darkBg) */}
                   {page.darkBg && (
                     <>
                       <h2 className="skw-page__heading">{page.heading}</h2>
@@ -205,8 +245,8 @@ export default function SkewedScroll() {
                       </p>
                       {page.listItems && page.listItems.length > 0 && (
                         <ul className="skw-page__list">
-                          {page.listItems.map((item, index) => (
-                            <li key={index} className="skw-page__list-item">
+                          {page.listItems.map((item, idx) => (
+                            <li key={idx} className="skw-page__list-item">
                               <span className="check-icon-wrapper">
                                 <Check
                                   size={16}
