@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./PremiumAnimation.css";
 import PremiumMan from "../assets/homePage/PremiumMan.png";
 import ArrowButton from "./ArrowButton";
-
+import PremiumBg from "../assets/homePage/Premium.png";
 gsap.registerPlugin(ScrollTrigger);
 
 import ArrowBlue from "../assets/icons/ArrowBlue.svg";
@@ -178,7 +178,7 @@ const PremiumAnimation = () => {
       {/* Background Text */}
       <div className="premium-bg-text-container">
         <h1 className="premium-bg-text" ref={bgTextRef}>
-          PREMIUM
+          <img src={PremiumBg} alt="" />
         </h1>
       </div>
 

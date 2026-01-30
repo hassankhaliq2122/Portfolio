@@ -1,5 +1,5 @@
 import React from "react";
-import headerLogo from "../assets/logo/HeaderLogo.png";
+import headerLogo from "../assets/logo/Header.svg";
 import "./Header.css";
 import ArrowButton from "./ArrowButton";
 import FullPageMenu from "./FullPageMenu";
