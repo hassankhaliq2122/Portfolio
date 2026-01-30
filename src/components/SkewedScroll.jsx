@@ -110,10 +110,12 @@ export default function SkewedScroll() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: `+=${window.innerHeight * (totalPanels * 3)}`, // Increased length for "one scroll one pic" feel
+          end: () => `+=${window.innerHeight * (totalPanels - 0.5)}`,
           pin: true,
+          pinSpacing: true,
           scrub: 1,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -134,7 +136,7 @@ export default function SkewedScroll() {
                 opacity: 0.5,
                 scale: 0.95,
                 duration: 1,
-                ease: "none", // Scrub controls ease
+                ease: "power1.inOut",
               },
               `step${i}`,
             )
@@ -145,7 +147,7 @@ export default function SkewedScroll() {
                 x: 0,
                 y: 0,
                 duration: 1,
-                ease: "none",
+                ease: "power1.inOut",
               },
               `step${i}`,
             )
@@ -156,15 +158,21 @@ export default function SkewedScroll() {
                 opacity: 1,
                 scale: 1,
                 duration: 1,
-                ease: "none",
+                ease: "power1.inOut",
               },
               `step${i}`,
             );
         }
       });
 
-      // Hold the last panel for a bit so it doesn't unpin immediately after the transition
-      tl.to({}, { duration: 1 }); // Dummy wait
+      // Force refresh ScrollTrigger to ensure proper calculations
+      gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
+
+      // Proper cleanup
+      return () => {
+        if (tl.scrollTrigger) tl.scrollTrigger.kill();
+        tl.kill();
+      };
     },
     { scope: containerRef },
   );
