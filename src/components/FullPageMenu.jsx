@@ -22,7 +22,7 @@ const serviceItems = [
 
 const contactItems = [
   { type: "General", email: "hello@metatrybe.com", img: Arrow },
-  { type: "Support", email: "Support@metatrybe.com", img: Arrow },
+  // { type: "Support", email: "Support@metatrybe.com", img: Arrow },
 ];
 
 const FullPageMenu = () => {
