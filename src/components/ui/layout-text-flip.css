@@ -9,7 +9,7 @@
 
 .ltf-word {
   font-size: clamp(24px, 6vw, 80px);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.02em;
   word-wrap: break-word;
   overflow-wrap: break-word;

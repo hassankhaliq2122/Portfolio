@@ -13,7 +13,7 @@
     font-size: 16px;
     font-weight: 400;
     margin-top: 55px;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 border: 1px solid #DCE3EE;
     color: #2F3438;
    background: linear-gradient(to center, #DCE3EE,#CCD2E0);
@@ -30,7 +30,7 @@ border-radius: 10px;
 .home-title {
     font-size: clamp(28px, 6vw, 80px);
     font-weight: 600;
-   margin-bottom: 24px;
+   /* margin-bottom: 24px; */
     line-height: 1.1;
     word-wrap: break-word;
     overflow-wrap: break-word;  
