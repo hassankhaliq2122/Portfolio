@@ -4,7 +4,7 @@ import SmoothScroll from "./components/SmoothScroll";
 import SplashScreen from "./components/SplashScreen";
 import TubeCursor from "./components/TubeCursor";
 import "./App.css";
-
+import ContactUs from "./pages/ContactUs";
 // Lazy load the heavy Home page since it's hidden behind IntroCover initially
 const Home = lazy(() => import("./pages/Home"));
 const Services = lazy(() => import("./pages/Services"));
@@ -19,6 +19,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/contact-us" element={<ContactUs />} />
           </Routes>
         </Suspense>
       </SmoothScroll>

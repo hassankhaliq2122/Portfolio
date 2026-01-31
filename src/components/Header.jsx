@@ -34,10 +34,10 @@ const Header = () => {
         style={{
           width: "100%",
           height: "1px",
-          color: "#E6E9EF",
-          margin: "15px 0",
+          color: "#ffffffff",
+          margin: "12px 0",
           border: "none",
-          backgroundColor: "#E6E9EF",
+          backgroundColor: "#ffffffff",
         }}
       />
     </>

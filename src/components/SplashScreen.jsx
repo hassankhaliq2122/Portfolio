@@ -63,7 +63,7 @@ const SplashScreen = ({ onComplete }) => {
       gsap.fromTo(
         textRef.current,
         { x: offset },
-        { x: 0, duration: 0.8, ease: "power3.inOut" },
+        { x: 0, duration: 0.5, ease: "power3.inOut" },
       );
     });
 
@@ -73,7 +73,7 @@ const SplashScreen = ({ onComplete }) => {
         autoAlpha: 1,
         x: 0,
         stagger: 0.05,
-        duration: 0.8,
+        duration: 0.3,
         ease: "power3.out",
       },
       "<",
@@ -82,12 +82,12 @@ const SplashScreen = ({ onComplete }) => {
     // 3. Ring returns to center of text
     tl.to(ring, {
       y: 0,
-      duration: 0.5,
+      duration: 0.3,
       ease: "power2.inOut",
     });
 
     // 4. Pause
-    tl.to({}, { duration: 0.5 });
+    tl.to({}, { duration: 0.3 });
 
     // 5. Transition Phase
     // Fade out text and Background COLOR, but keep RING visible
@@ -95,7 +95,7 @@ const SplashScreen = ({ onComplete }) => {
       [textRef.current],
       {
         opacity: 0,
-        duration: 0.5,
+        duration: 0.3,
         ease: "power2.in",
       },
       "flyStart",
@@ -105,7 +105,7 @@ const SplashScreen = ({ onComplete }) => {
       containerRef.current,
       {
         backgroundColor: "rgba(0,0,0,0)",
-        duration: 0.5,
+        duration: 0.3,
         ease: "power2.in",
       },
       "flyStart",
@@ -134,7 +134,7 @@ const SplashScreen = ({ onComplete }) => {
             x: x,
             y: y,
             scale: 0.2,
-            duration: 1.2, // Slower flight for clarity
+            duration: 1, // Slower flight for clarity
             ease: "power3.inOut",
             onComplete: () => {
               // Ring has arrived.
@@ -151,7 +151,7 @@ const SplashScreen = ({ onComplete }) => {
           });
         } else {
           // Fallback
-          gsap.to(ring, { opacity: 0, duration: 0.5 });
+          gsap.to(ring, { opacity: 0, duration: 0.3 });
           if (containerRef.current) containerRef.current.style.display = "none";
           if (onComplete) onComplete();
         }

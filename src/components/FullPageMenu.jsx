@@ -10,7 +10,7 @@ const menuItems = [
   { label: "Home", link: "/" },
   { label: "Work", link: "/work" },
   { label: "Services", link: "/services" },
-  { label: "About", link: "/about" },
+  { label: "About", link: "/contact-us" },
 ];
 
 const serviceItems = [

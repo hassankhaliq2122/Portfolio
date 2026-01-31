@@ -1,0 +1,644 @@
+/* ContactUs.css - Multi-step Contact Form Styles */
+
+/* ============================================
+   Page Container
+   ============================================ */
+.contact-page {
+  min-height: 100vh;
+  background-color: #F2F3F6;
+ padding: 20px 0;
+  
+}
+
+/* Header Styles overrides for Contact Page */
+.contact-page .header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  max-width: 1280px;
+  margin: 0 auto;
+
+}
+
+/* ============================================
+   Main Card Container
+   ============================================ */
+.contact-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  /* padding: 40px 20px 60px; */
+}
+
+.contact-card {
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 60px 70px 50px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  min-height: calc(100vh - 180px);
+}
+
+/* ============================================
+   Header Content
+   ============================================ */
+.contactUs-title {
+  font-size: 80px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 12px;
+  line-height: 1.9;
+  letter-spacing: -0.02em;
+}
+
+.contactUs-subtitle {
+  font-size: 1.125rem;
+  color: #2F3438;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+/* ============================================
+   Step Indicator / Progress Bar
+   ============================================ */
+.steps-indicator {
+  display: flex;
+  align-items: center;
+  
+  gap: 8px;
+  margin-bottom: 48px;
+  
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.step-item.active {
+  background: #f1f5f9;
+  color: #1e293b;
+  
+}
+
+.step-item.completed {
+  color: #2c65e1;
+  border: 1px solid #2c65e1;
+}
+
+.step-item.pending {
+  color: #94a3b8;
+}
+
+.step-connector {
+  width: 24px;
+  height: 2px;
+  background: #e2e8f0;
+  transition: background 0.3s ease;
+}
+
+.step-connector.completed {
+  background: #2c65e1;
+}
+
+/* ============================================
+   Section Headers
+   ============================================ */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+/* ============================================
+   PixelCard Wrapper Styles
+   ============================================ */
+.pixel-card-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.pixel-card-wrapper .pixel-card {
+  border: none;
+}
+
+.pixel-card-wrapper .pixel-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pixel-card-wrapper .service-card,
+.pixel-card-wrapper .business-card,
+.pixel-card-wrapper .timeline-card {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border: 2px solid #f1f5f9;
+  height: 100%;
+}
+
+/* ============================================
+   Service Selection Cards (Step 1)
+   ============================================ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.service-card {
+  position: relative;
+  padding: 24px 20px;
+  border-radius: 20px;
+  border: 1px solid #f1f5f9;
+  
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  border-color: #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.service-card {
+  position: relative;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.service-card.selected::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px; /* border thickness */
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #2C65E1,
+    #02A7FF,
+    #1CE295,
+    #D8E12B
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+.service-card.selected {
+  box-shadow: 0 4px 20px rgba(44, 101, 225, 0.15);
+}
+/* Badge for "Most Selected" */
+.service-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: linear-gradient(90deg, #02a7ff 0%, #1ce295 100%);
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+/* Selection Circle */
+.selection-circle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.selection-circle.selected {
+  background: #1e293b;
+  border-color: #1e293b;
+}
+
+/* Service Icon */
+.service-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}
+
+.service-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Service Content */
+.service-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.service-description {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* ============================================
+   Website Question Cards (Step 2)
+   ============================================ */
+.website-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.website-card {
+  padding: 24px;
+  border-radius: 20px;
+  border: 2px solid #f1f5f9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+
+.website-card:hover {
+  border-color: #e2e8f0;
+}
+
+.website-card.selected {
+  border-color: #2c65e1;
+  box-shadow: 0 4px 20px rgba(44, 101, 225, 0.15);
+}
+
+/* Gradient border for "Yes" option when selected */
+.website-card.gradient-border {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, #2c65e1 0%, #02a7ff 30%, #1ce295 70%, #d8e12b 100%)
+      border-box;
+}
+
+.website-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.website-card-content {
+  flex: 1;
+}
+
+.website-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.website-card-desc {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.website-url-input {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px 18px;
+  font-size: 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  color: #64748b;
+}
+
+.website-url-input:focus {
+  border-color: #2c65e1;
+}
+
+.website-url-input::placeholder {
+  color: #94a3b8;
+}
+
+/* ============================================
+   Business Type Cards (Step 2)
+   ============================================ */
+.business-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.business-card {
+  padding: 24px;
+  border-radius: 20px;
+  border: 2px solid #f1f5f9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+
+.business-card:hover {
+  border-color: #e2e8f0;
+}
+
+.business-card.selected {
+  border-color: #2c65e1;
+  box-shadow: 0 4px 20px rgba(44, 101, 225, 0.15);
+}
+
+.business-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.business-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.business-card-desc {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* ============================================
+   Budget Options (Step 3)
+   ============================================ */
+.budget-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.budget-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  border-radius: 14px;
+  border: 2px solid #f1f5f9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.budget-option:hover {
+  border-color: #e2e8f0;
+}
+
+.budget-option.selected {
+  border-color: #2c65e1;
+  background: #eff6ff;
+  color: #2c65e1;
+}
+
+.budget-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.budget-radio.selected {
+  border-color: #2c65e1;
+  background: #ffffff;
+}
+
+.budget-radio-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2c65e1;
+}
+
+/* ============================================
+   Timeline Cards (Step 3) - Same as Business Cards
+   ============================================ */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.timeline-card {
+  padding: 24px;
+  border-radius: 20px;
+  border: 2px solid #f1f5f9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+
+.timeline-card:hover {
+  border-color: #e2e8f0;
+}
+
+.timeline-card.selected {
+  border-color: #2c65e1;
+  box-shadow: 0 4px 20px rgba(44, 101, 225, 0.15);
+}
+
+/* ============================================
+   Finish Step (Step 4)
+   ============================================ */
+.finish-container {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.finish-icon {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    #2c65e1 0%,
+    #02a7ff 30%,
+    #1ce295 70%,
+    #d8e12b 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.finish-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 16px;
+}
+
+.finish-desc {
+  font-size: 1rem;
+  color: #64748b;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ============================================
+   Continue Button
+   ============================================ */
+.continue-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.continue-button {
+  padding: 16px 32px;
+  border-radius: 14px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(
+    90deg,
+    #2c65e1 0%,
+    #02a7ff 30%,
+    #1ce295 70%,
+    #d8e12b 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+}
+
+.continue-button:hover {
+  background-position: 100% 50%;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(44, 101, 225, 0.3);
+}
+
+/* ============================================
+   Check Icon Styles
+   ============================================ */
+.check-icon {
+  width: 16px;
+  height: 16px;
+  color: #ffffff;
+}
+
+.check-icon-large {
+  width: 48px;
+  height: 48px;
+  color: #ffffff;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 1200px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-card {
+    padding: 40px 30px;
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .business-grid,
+  .timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-page {
+    padding-top: 80px;
+  }
+
+  .contact-container {
+    padding: 0 16px 40px;
+  }
+
+  .contact-card {
+    padding: 32px 24px;
+    border-radius: 24px;
+  }
+
+  .contact-title {
+    font-size: 2rem;
+  }
+
+  .services-grid,
+  .website-options,
+  .business-grid,
+  .timeline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-options {
+    flex-direction: column;
+  }
+
+  .steps-indicator {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+}

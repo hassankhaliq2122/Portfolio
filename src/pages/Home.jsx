@@ -81,8 +81,8 @@ const Home = () => {
 
   return (
     <>
+      <Header />
       <div className="home-container">
-        <Header />
         <div className="tagline">
           <h3>Choice of Top B2B Companies</h3>
         </div>
