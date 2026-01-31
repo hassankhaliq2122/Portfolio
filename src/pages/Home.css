@@ -40,6 +40,7 @@ border-radius: 10px;
     font-size: clamp(14px, 2vw, 18px);
     font-weight: 400;
     color: #2F3438;
+    margin-top: 20px;
     line-height: 1.6;
     max-width: 100%;
     word-wrap: break-word;
