@@ -1,0 +1,18 @@
+/* PixelCards.css */
+.pixel-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* Let clicks pass through if needed, or manage z-index carefully */
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit; /* match parent border radius */
+}
+
+.pixel-wrapper canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

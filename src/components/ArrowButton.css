@@ -23,6 +23,13 @@
 
 .arrow-btn:hover {
   transform: scale(1.02);
+  background: linear-gradient(
+    90deg,
+    #2c65e1 0%,
+    #02a7ff 30%,
+    #1ce295 70%,
+    #d8e12b 100%
+  );
 }
 
 .arrow-btn-text {

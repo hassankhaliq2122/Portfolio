@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Check } from "lucide-react";
 import "./ContactUs.css";
 import Header from "../components/Header";
@@ -8,7 +8,42 @@ import BookIcon from "../assets/contactUs/book.svg";
 import Book2Icon from "../assets/contactUs/book2.svg";
 import RecycleIcon from "../assets/contactUs/recycle.svg";
 import EmoIcon from "../assets/contactUs/emo.svg";
-import darkVeil from "../assets/contactUs/dark-veil.webm";
+// import darkVeil from "../assets/contactUs/dark-veil.webm";
+import PixelCards from "../components/PixelCards";
+
+// ServiceCard component with ref for PixelCards hover detection
+const ServiceCard = ({ service, isSelected, onSelect }) => {
+  const cardRef = useRef(null);
+
+  return (
+    <div
+      ref={cardRef}
+      onClick={onSelect}
+      className={`service-card ${isSelected ? "selected" : ""}`}
+    >
+      {/* Badge */}
+      {service.badge && <span className="service-badge">{service.badge}</span>}
+
+      {/* Selection Circle */}
+      <div className={`selection-circle ${isSelected ? "selected" : ""}`}>
+        {isSelected && <Check className="check-icon" />}
+      </div>
+
+      {/* PixelCards effect - pass cardRef for hover detection */}
+      <PixelCards cardRef={cardRef} />
+
+      {/* Icon */}
+      <div className="service-icon">
+        <img src={service.icon} alt={service.title} />
+      </div>
+
+      {/* Content */}
+      <h3 className="service-title">{service.title}</h3>
+      <p className="service-description">{service.description}</p>
+    </div>
+  );
+};
+
 const ContactUs = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -256,40 +291,12 @@ const ContactUs = () => {
                 <h2 className="section-title">What Can We Help You With?</h2>
                 <div className="services-grid">
                   {services.map((service) => (
-                    <div
+                    <ServiceCard
                       key={service.id}
-                      onClick={() => handleServiceSelect(service.id)}
-                      className={`service-card ${
-                        formData.service === service.id ? "selected" : ""
-                      }`}
-                    >
-                      {/* Badge */}
-                      {service.badge && (
-                        <span className="service-badge">{service.badge}</span>
-                      )}
-
-                      {/* Selection Circle */}
-                      <div
-                        className={`selection-circle ${
-                          formData.service === service.id ? "selected" : ""
-                        }`}
-                      >
-                        {formData.service === service.id && (
-                          <Check className="check-icon" />
-                        )}
-                      </div>
-
-                      {/* Icon */}
-                      <div className="service-icon">
-                        <img src={service.icon} alt={service.title} />
-                      </div>
-
-                      {/* Content */}
-                      <h3 className="service-title">{service.title}</h3>
-                      <p className="service-description">
-                        {service.description}
-                      </p>
-                    </div>
+                      service={service}
+                      isSelected={formData.service === service.id}
+                      onSelect={() => handleServiceSelect(service.id)}
+                    />
                   ))}
                 </div>
               </>
