@@ -14,7 +14,7 @@ const Header = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        // scrolling down
+       
         setHidden(true);
       } else {
         // scrolling up
