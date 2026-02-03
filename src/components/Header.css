@@ -1,31 +1,52 @@
+.header {
+    position: fixed; /* Changed from sticky to fixed for reliable behavior */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    width: 100%;
+    /* Glassmorphism Effect */
+    background-color: color-mix(in srgb, var(--background), transparent 20%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    /* Smart Animation */
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.header.hide {
+    transform: translateY(-100%);
+}
+
+/* ===== Header Container ===== */
 .headerContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
     flex-wrap: wrap;
     gap: 16px;
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
+/* ===== Navigation Links ===== */
 .headerLinks ul {
     display: flex;
+    align-items: center;
     gap: 15px;
     list-style: none;
-    align-items: center;
     padding: 0;
     margin: 0;
-    flex-wrap: wrap;
 }
 
+/* ===== Header Text ===== */
 .headerText {
     font-size: clamp(14px, 2vw, 18px);
     font-weight: 400;
     color: #000000;
-    width: auto;
     max-width: 15rem;
     transition: color 0.3s ease;
 }
@@ -34,52 +55,49 @@
     color: #ffffff;
 }
 
-/* Tablet Styles */
+/* ===== Tablet Styles ===== */
 @media (max-width: 1024px) {
     .headerContainer {
         gap: 20px;
     }
-    
+
     .headerLinks ul {
         gap: 12px;
     }
 }
 
-/* Mobile Styles */
+/* ===== Mobile Styles ===== */
 @media (max-width: 768px) {
+    .header {
+        padding: 16px 0;
+    }
+
     .headerContainer {
         flex-direction: row;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
-        justify-content: space-between;
-        margin-top: 20px;
-        padding: 0; /* Remove padding to align with body text since parent has padding */
+        padding: 0 16px;
     }
-    
-    .headerLinks {
-        margin: 0;
-        width: auto;
-    }
-    
+
     .headerLinks ul {
-        width: auto;
-        justify-content: flex-end;
         gap: 0;
+        justify-content: flex-end;
     }
-    
+
     .headerText {
         display: none;
     }
 
-    /* Hide the 'Book a call' button on mobile */
+    /* Hide CTA button on mobile */
     .headerLinks .arrow-btn {
         display: none;
     }
 }
 
-/* Small Mobile Styles */
+/* ===== Small Mobile ===== */
 @media (max-width: 480px) {
     .headerContainer {
-       padding: 0;
+        padding: 0 12px;
     }
 }
