@@ -12,11 +12,12 @@
 .tagline h3{
     font-size: 16px;
     font-weight: 400;
-    margin-top: 55px;
+    margin-top: 135px;
     /* margin-bottom: 24px; */
 border: 1px solid #DCE3EE;
     color: #2F3438;
    background: linear-gradient(to center, #DCE3EE,#CCD2E0);
+   
    width: 250px;
    height: 30px;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
