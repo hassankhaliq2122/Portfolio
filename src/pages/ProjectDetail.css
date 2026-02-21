@@ -1,0 +1,344 @@
+/* Project Detail Page Styles */
+.project-detail-container {
+  background-color: #ffffff;
+  color: #111111;
+  min-height: 100vh;
+  padding-top: 120px;
+}
+
+/* Loading/Error */
+.project-loading,
+.project-error {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #111;
+  font-size: 1.5rem;
+}
+
+/* 1. Heading + Para */
+.project-header {
+  padding: 0 5%;
+  margin-bottom: 60px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.project-subtitle {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  color: #666;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* 2. Hero Image */
+.project-hero-image-wrapper {
+  width: 100%;
+  padding: 0 5%;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.project-hero-image {
+  width: 100%;
+  max-width: 1400px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* 3. Project Overview & Meta Grid (Two Columns) */
+.project-overview-container {
+  padding: 0 5%;
+  max-width: 1400px;
+  margin: 0 auto 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.overview-left {
+  max-width: 600px;
+}
+
+.section-label {
+  font-size: 32px;
+  text-transform: uppercase;
+  /* letter-spacing: 0.1em; */
+  color: #000000;
+  margin-bottom: 24px;
+  display: block;
+  font-weight: 600;
+}
+
+.overview-text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #000000;
+}
+
+.overview-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.meta-item h4 {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.meta-item p {
+  font-size: 1.1rem;
+  color: #111;
+  font-weight: 500;
+}
+
+/* 4. Problem & Solution (Two Columns) */
+.problem-solution-section {
+  padding: 0 5%;
+  max-width: 1400px;
+  margin: 0 auto 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.ps-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.ps-item p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* 5. Gallery Images */
+.project-gallery-row {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 5%;
+  margin-bottom: 120px;
+  align-items: center;
+}
+
+.gallery-image {
+  width: 100%;
+  max-width: 1400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 6. Goals & Objectives (Black bg) */
+.project-goals-section {
+  padding: 120px 5%;
+  background-color: #050505;
+  margin-bottom: 100px;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
+
+.goals-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.goals-title {
+  font-size: 2.5rem;
+  margin-bottom: 80px;
+}
+
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+.goal-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
+}
+
+.goal-number {
+  font-size: 3rem; /* Larger Number */
+  color: #2C65E1; /* Blue accent */
+  margin-bottom: 20px;
+  display: block;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.goal-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* 7. What We Have Done (Tags) */
+.project-tags-section {
+  padding: 0 5%;
+  margin-bottom: 120px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tags-header {
+  font-size: 2rem;
+  margin-bottom: 60px;
+  font-weight: 600;
+}
+
+.tags-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* More granular grid */
+  gap: 20px;
+}
+
+.tag-pill {
+  padding: 16px 24px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+}
+
+.tag-pill:hover {
+  border-color: #2C65E1;
+  color: #2C65E1;
+  background: rgba(44, 101, 225, 0.05);
+}
+
+/* 8. More Work */
+.more-work-section {
+  padding: 120px 5%;
+  background-color: #ffffff;
+}
+
+.more-work-title {
+  font-size: 2rem;
+  margin-bottom: 60px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 9. CTA Section (Blue) */
+.project-cta-section {
+  background-color: #2C65E1;
+  color: #fff;
+  padding: 100px 5%;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* Bottom align title and image */
+}
+
+.cta-left {
+  max-width: 600px;
+  z-index: 2;
+}
+
+.cta-tag {
+  background: #fff;
+  color: #2C65E1;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.cta-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+
+.cta-contact-info h4 {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.cta-contact-info p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.cta-image {
+  width: 40%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .project-overview-container,
+  .problem-solution-section {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .overview-right {
+    grid-template-columns: 1fr 1fr; /* Keep 2 cols for meta on tablet */
+  }
+
+  .cta-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-image {
+    width: 100%;
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .goals-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tags-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .overview-right {
+    grid-template-columns: 1fr; /* Stack meta on mobile */
+  }
+}

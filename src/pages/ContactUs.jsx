@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Check } from "lucide-react";
+import { Check, ArrowLeft, Loader2, ArrowUpRight, Star } from "lucide-react";
 import "./ContactUs.css";
 import Header from "../components/Header";
 // Import SVG icons from contactUs folder
@@ -8,8 +8,176 @@ import BookIcon from "../assets/contactUs/book.svg";
 import Book2Icon from "../assets/contactUs/book2.svg";
 import RecycleIcon from "../assets/contactUs/recycle.svg";
 import EmoIcon from "../assets/contactUs/emo.svg";
-// import darkVeil from "../assets/contactUs/dark-veil.webm";
 import PixelCards from "../components/PixelCards";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+const countries = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Central African Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Comoros",
+  "Congo",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Djibouti",
+  "Dominican Republic",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Estonia",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Guatemala",
+  "Guinea",
+  "Guyana",
+  "Haiti",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Liberia",
+  "Libya",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar",
+  "Namibia",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Macedonia",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palestine",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Somalia",
+  "South Africa",
+  "South Korea",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Taiwan",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Togo",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States",
+  "Uruguay",
+  "Uzbekistan",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe",
+];
 
 // ServiceCard component with ref for PixelCards hover detection
 const ServiceCard = ({ service, isSelected, onSelect }) => {
@@ -46,6 +214,9 @@ const ServiceCard = ({ service, isSelected, onSelect }) => {
 
 const ContactUs = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [formData, setFormData] = useState({
     service: "",
     hasWebsite: null,
@@ -53,13 +224,20 @@ const ContactUs = () => {
     businessType: "",
     budget: "",
     timeline: "",
+    projectGoals: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    companyName: "",
+    country: "",
   });
 
   const steps = [
     { number: 1, label: "Service Selection" },
     { number: 2, label: "Website Context" },
     { number: 3, label: "Project Scope" },
-    { number: 4, label: "Finish" },
+    { number: 4, label: "Let's Connect" },
+    { number: 5, label: "Finish" },
   ];
 
   const services = [
@@ -141,59 +319,79 @@ const ContactUs = () => {
   ];
 
   const budgetRanges = [
-    { id: "2k-5k", label: "$2k – $5k" },
-    { id: "5k-10k", label: "$5k – $10k" },
-    { id: "10k-20k", label: "$10k – $20k" },
-    { id: "20k+", label: "$20k+" },
-    { id: "not-sure", label: "Not sure yet" },
+    { id: "$2k - $5k", label: "$2k - $5k" },
+    { id: "$5k - $10k", label: "$5k - $10k" },
+    { id: "$10k - $20k", label: "$10k - $20k" },
+    { id: "$20k+", label: "$20k+" },
+    { id: "Not sure yet", label: "Not sure yet" },
   ];
 
   const timelines = [
-    {
-      id: "startup",
-      title: "Startup",
-      description:
-        "Early-stage or growing fast — focused on launching, validating, or scaling.",
-    },
-    {
-      id: "small-medium",
-      title: "Small / Medium Business",
-      description:
-        "An established business looking to improve online presence and conversions.",
-    },
-    {
-      id: "small-medium-2",
-      title: "Small / Medium Business",
-      description:
-        "An established business looking to improve online presence and conversions.",
-    },
-    {
-      id: "enterprise",
-      title: "Enterprise",
-      description:
-        "Large organization with complex needs, processes, and high expectations.",
-    },
-    {
-      id: "agency",
-      title: "Agency",
-      description:
-        "A creative or digital agency seeking a reliable development partner.",
-    },
-    {
-      id: "other",
-      title: "Other",
-      description:
-        "If none of the above fit, tell us a bit more about your business.",
-    },
+    { id: "Immediately", label: "Immediately" },
+    { id: "In 1-2 months", label: "In 1-2 months" },
+    { id: "Flexible", label: "Flexible" },
   ];
 
   const handleServiceSelect = (serviceId) => {
     setFormData({ ...formData, service: serviceId });
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    if (e) e.preventDefault();
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    try {
+      // Map form data to Lead API format
+      const leadPayload = {
+        name: formData.fullName,
+        email: formData.email,
+        company: formData.companyName,
+        country: formData.country,
+        budgetRange: formData.budget,
+        projectType: formData.service,
+        message:
+          formData.projectGoals ||
+          `Service: ${formData.service}, Business: ${formData.businessType}, Timeline: ${formData.timeline}`,
+      };
+
+      const res = await fetch(`${API_URL}/api/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(leadPayload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Something went wrong.");
+      }
+
+      setIsSubmitted(true);
+      setCurrentStep(5);
+    } catch (err) {
+      setSubmitError(err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep > 1 && currentStep < 5) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
   const handleNext = () => {
     if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
+    } else if (currentStep === 4) {
+      handleSubmit();
     }
   };
 
@@ -219,8 +417,15 @@ const ContactUs = () => {
         };
       case 4:
         return {
-          title: "Almost Done!",
-          subtitle: "Thank you for your responses. We'll be in touch soon!",
+          title: "Let's Connect",
+          subtitle:
+            "Tell us how to reach you. We'll follow up shortly to schedule a call.",
+        };
+      case 5:
+        return {
+          title: "Thank You!",
+          subtitle:
+            "We've received your information and will be in touch soon.",
         };
       default:
         return { title: "", subtitle: "" };
@@ -234,9 +439,9 @@ const ContactUs = () => {
       case 2:
         return "Continue: Project Scope";
       case 3:
-        return "Continue: Finish";
+        return "Continue: Let's Connect";
       case 4:
-        return "Submit";
+        return "Start My Project";
       default:
         return "Continue";
     }
@@ -251,39 +456,58 @@ const ContactUs = () => {
         <div className="contact-container">
           <div className="contact-card">
             {/* Header Content */}
-            <h1 className="contactUs-title">{title}</h1>
-            <p className="contactUs-subtitle">{subtitle}</p>
-
-            {/* Step Indicator */}
-            <div className="steps-indicator">
-              {steps.map((step, index) => (
-                <React.Fragment key={step.number}>
-                  <div
-                    className={`step-item ${
-                      currentStep > step.number
-                        ? "completed"
-                        : currentStep === step.number
-                          ? "active"
-                          : "pending"
-                    }`}
-                  >
-                    {currentStep > step.number ? (
-                      <Check className="check-icon" />
-                    ) : (
-                      <span>{step.number}</span>
-                    )}
-                    <span>{step.label}</span>
-                  </div>
-                  {index < steps.length - 1 && (
-                    <div
-                      className={`step-connector ${
-                        currentStep > step.number ? "completed" : ""
-                      }`}
-                    />
+            {currentStep < 5 && (
+              <>
+                <div className="contactUs-header-group">
+                  {currentStep > 1 && !isSubmitted && (
+                    <button
+                      onClick={handleBack}
+                      className="back-arrow-btn"
+                      aria-label="Go back"
+                    >
+                      <ArrowLeft size={24} />
+                    </button>
                   )}
-                </React.Fragment>
-              ))}
-            </div>
+                  <h1 className="contactUs-title">{title}</h1>
+                </div>
+                <p
+                  className={`contactUs-subtitle ${currentStep > 1 && !isSubmitted ? "indented" : ""}`}
+                >
+                  {subtitle}
+                </p>
+
+                {/* Step Indicator */}
+                <div className="steps-indicator">
+                  {steps.map((step, index) => (
+                    <React.Fragment key={step.number}>
+                      <div
+                        className={`step-item ${
+                          currentStep > step.number
+                            ? "completed"
+                            : currentStep === step.number
+                              ? "active"
+                              : "pending"
+                        }`}
+                      >
+                        {currentStep > step.number ? (
+                          <Check className="check-icon" />
+                        ) : (
+                          <span>{step.number}</span>
+                        )}
+                        <span>{step.label}</span>
+                      </div>
+                      {index < steps.length - 1 && (
+                        <div
+                          className={`step-connector ${
+                            currentStep > step.number ? "completed" : ""
+                          }`}
+                        />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </>
+            )}
 
             {/* Step 1: Service Selection */}
             {currentStep === 1 && (
@@ -466,43 +690,26 @@ const ContactUs = () => {
                 <h2 className="section-title">
                   When Are You Looking To Start?
                 </h2>
-                <div className="timeline-grid">
+                <div className="budget-options">
                   {timelines.map((timeline) => (
                     <div
                       key={timeline.id}
                       onClick={() =>
                         setFormData({ ...formData, timeline: timeline.id })
                       }
-                      className={`timeline-card ${
+                      className={`budget-option ${
                         formData.timeline === timeline.id ? "selected" : ""
                       }`}
                     >
-                      <div className="business-card-header">
-                        <div>
-                          <h3 className="business-card-title">
-                            {timeline.title}
-                          </h3>
-                          <p className="business-card-desc">
-                            {timeline.description}
-                          </p>
-                        </div>
-                        <div
-                          className={`selection-circle ${
-                            formData.timeline === timeline.id ? "selected" : ""
-                          }`}
-                          style={
-                            formData.timeline === timeline.id
-                              ? {
-                                  background: "#2C65E1",
-                                  borderColor: "#2C65E1",
-                                }
-                              : {}
-                          }
-                        >
-                          {formData.timeline === timeline.id && (
-                            <Check className="check-icon" />
-                          )}
-                        </div>
+                      <span>{timeline.label}</span>
+                      <div
+                        className={`budget-radio ${
+                          formData.timeline === timeline.id ? "selected" : ""
+                        }`}
+                      >
+                        {formData.timeline === timeline.id && (
+                          <div className="budget-radio-inner" />
+                        )}
                       </div>
                     </div>
                   ))}
@@ -510,26 +717,169 @@ const ContactUs = () => {
               </>
             )}
 
-            {/* Step 4: Finish */}
+            {/* Step 4: Contact Details */}
             {currentStep === 4 && (
+              <div className="contact-details-step">
+                <h2 className="section-title">
+                  Tell Us Briefly About Your Project Or Goals
+                </h2>
+                <textarea
+                  name="projectGoals"
+                  placeholder="We want a modern website that converts visitors into leads..."
+                  value={formData.projectGoals}
+                  onChange={handleInputChange}
+                  className="project-goals-textarea"
+                />
+
+                <h2 className="section-title">Contact Details</h2>
+                <div className="contact-details-grid">
+                  <div className="input-field">
+                    <label>
+                      Full Name <span className="required-star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      placeholder="John Doe"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="input-field">
+                    <label>
+                      Email <span className="required-star">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="john@email.com"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="input-field">
+                    <label>Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="+1 123 456 789"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="input-field">
+                    <label>Company Name</label>
+                    <input
+                      type="text"
+                      name="companyName"
+                      placeholder="Enter Company Name (Apple)"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="input-field">
+                    <label>
+                      Country <span className="required-star">*</span>
+                    </label>
+                    <select
+                      name="country"
+                      value={formData.country}
+                      onChange={handleInputChange}
+                      required
+                      className="country-select"
+                    >
+                      <option value="">Select your country</option>
+                      {countries.map((c) => (
+                        <option key={c} value={c}>
+                          {c}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Submit Error */}
+                {submitError && (
+                  <div className="submit-error">{submitError}</div>
+                )}
+              </div>
+            )}
+
+            {/* Success Message (Step 5) */}
+            {currentStep === 5 && (
               <div className="finish-container">
                 <div className="finish-icon">
-                  <Check className="check-icon-large" />
+                  <Check
+                    className="check-icon-large"
+                    color="#ffffff"
+                    strokeWidth={3}
+                  />
                 </div>
                 <h2 className="finish-title">Thank You!</h2>
                 <p className="finish-desc">
-                  We've received your information and will be in touch within 24
-                  hours to discuss your project.
+                  We've received your information and will be in touch
+                  <br />
+                  within 24 hours to discuss your project.
                 </p>
+
+                <a href="/" className="go-home-btn">
+                  Go to Home Page <ArrowUpRight size={18} />
+                </a>
+
+                <div className="testimonial-section">
+                  <h3 className="testimonial-title">What Our Clients Say</h3>
+
+                  <div className="testimonial-stars-container">
+                    <div className="testimonial-stars">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={20}
+                          fill="#D8E12B"
+                          color="#D8E12B"
+                        />
+                      ))}
+                    </div>
+                    <span className="testimonial-niche">
+                      (Luxury Business Website)
+                    </span>
+                  </div>
+
+                  <p className="testimonial-quote">
+                    “Metatrybe perfectly combined premium design aesthetics with
+                    strategic thinking. The result was a luxury website that
+                    truly represents our brand.”
+                  </p>
+
+                  <div className="testimonial-author">
+                    <h4>Darbpay</h4>
+                    <p>B2B AI SaaS, KSA</p>
+                  </div>
+                </div>
               </div>
             )}
 
             {/* Continue Button */}
-            <div className="continue-button-wrapper">
-              <button onClick={handleNext} className="continue-button">
-                {getButtonText()}
-              </button>
-            </div>
+            {currentStep < 5 && (
+              <div className="continue-button-wrapper">
+                <button
+                  onClick={handleNext}
+                  className="continue-button"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={18} className="spinner" />
+                      <span>Submitting...</span>
+                    </>
+                  ) : (
+                    getButtonText()
+                  )}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

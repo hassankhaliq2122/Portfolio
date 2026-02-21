@@ -100,7 +100,11 @@ const Working = () => {
       </div>
 
       <div className="working-footer">
-        <ArrowButton text="Contact Us" enableStarBorder={true} />
+        <ArrowButton
+          text="Contact Us"
+          enableStarBorder={true}
+          link="/contact-us"
+        />
       </div>
     </div>
   );

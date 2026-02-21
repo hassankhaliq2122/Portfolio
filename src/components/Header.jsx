@@ -14,7 +14,7 @@ const Header = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-       
+        // scrolling down
         setHidden(true);
       } else {
         // scrolling up
@@ -46,7 +46,7 @@ const Header = () => {
               <p className="headerText">Let's brand up your website</p>
             </li>
             <AnimatedThemeToggler className="text-gray-700 dark:text-gray-200" />
-            <ArrowButton text="Book a call" />
+            <ArrowButton text="Contact Us" link="/contact-us" />
             <FullPageMenu />
           </ul>
         </div>

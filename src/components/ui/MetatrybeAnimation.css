@@ -1,0 +1,349 @@
+/* MetatrybeAnimation.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+
+
+
+.metatrybe-container {
+  min-height: 100vh;
+  position: relative;
+  transition: filter 0.5s ease;
+}
+
+/* Quantum Canvas */
+.quantum-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Consciousness Indicator */
+.consciousness-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  z-index: 1000;
+}
+
+.consciousness-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #0066ff, #00eeff);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.consciousness-text {
+  font-size: 12px;
+  font-family: 'Orbitron', monospace;
+  color: #00eeff;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Meta-Morphic Navigation */
+.meta-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 25px;
+  z-index: 100;
+  background: rgba(10, 14, 23, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 238, 255, 0.2);
+}
+
+.meta-nav-item {
+  position: relative;
+  padding: 15px 25px;
+  cursor: pointer;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  color: #a0e7ff;
+  background: rgba(0, 102, 255, 0.1);
+  border-radius: 50px;
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.meta-nav-item:hover {
+  background: rgba(0, 102, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.nav-text {
+  font-size: 14px;
+  letter-spacing: 2px;
+  z-index: 2;
+}
+
+.nav-orb {
+  width: 8px;
+  height: 8px;
+  background: #00eeff;
+  border-radius: 50%;
+  margin-top: 8px;
+  box-shadow: 0 0 15px #00eeff;
+}
+
+.meta-logo {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 5px;
+  background: linear-gradient(45deg, #0066ff, #00eeff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(0, 238, 255, 0.5);
+}
+
+/* Chrono-Spatial Sections */
+.chrono-main {
+  padding-top: 120px;
+}
+
+.chrono-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero {
+  text-align: center;
+}
+
+.meta-title {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 1;
+  margin-bottom: 30px;
+}
+
+.title-part {
+  display: block;
+  background: linear-gradient(45deg, #0066ff, #00eeff, #cc00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(0, 238, 255, 0.3);
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { filter: brightness(1) saturate(100%); }
+  100% { filter: brightness(1.5) saturate(150%); }
+}
+
+.meta-subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: #88d3ff;
+  max-width: 600px;
+  margin: 0 auto 50px;
+}
+
+.quantum-particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #00eeff;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #00eeff;
+  pointer-events: none;
+}
+
+/* Services */
+.services {
+  background: rgba(0, 20, 40, 0.5);
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin-top: 60px;
+}
+
+.service-card {
+  background: rgba(0, 30, 60, 0.3);
+  border: 1px solid rgba(0, 238, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-15px);
+  border-color: #00eeff;
+  box-shadow: 0 20px 40px rgba(0, 238, 255, 0.2);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 238, 255, 0.1), transparent);
+  transition: left 0.7s ease;
+}
+
+.service-card:hover::before {
+  left: 100%;
+}
+
+.service-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.service-card h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #00eeff;
+}
+
+.service-card p {
+  color: #a0d7ff;
+  line-height: 1.6;
+}
+
+/* Demo Section */
+.demo {
+  text-align: center;
+}
+
+.meta-button {
+  background: linear-gradient(45deg, #0066ff, #00eeff);
+  border: none;
+  padding: 20px 50px;
+  font-family: 'Orbitron', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0a0e17;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 3px;
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.meta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(0, 238, 255, 0.7);
+}
+
+.meta-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.meta-button:hover::after {
+  opacity: 1;
+}
+
+/* Dimension Indicator */
+.dimension-indicator {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dimension-dots {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.dimension-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(0, 238, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dimension-dot:hover {
+  background: rgba(0, 238, 255, 0.7);
+  transform: scale(1.3);
+}
+
+.dimension-dot.active {
+  background: #00eeff;
+  box-shadow: 0 0 15px #00eeff;
+  transform: scale(1.3);
+}
+
+.dimension-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #00eeff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .meta-nav {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .meta-logo {
+    position: relative;
+    left: 0;
+    order: -1;
+    margin-bottom: 10px;
+  }
+  
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .consciousness-indicator {
+    width: 150px;
+  }
+}

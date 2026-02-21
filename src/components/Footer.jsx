@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import FooterLogo from "../assets/logo/Footer.jpeg";
 import "./Footer.css";
 import FooterLogo from "../assets/logo/Footer.svg";
@@ -21,7 +22,7 @@ const Footer = () => {
           <div className="footer-column">
             <h4>Company</h4>
             <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
+            <Link to="/contact-us">Contact Us</Link>
             <a href="#">Our Deals</a>
           </div>
 

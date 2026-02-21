@@ -28,6 +28,7 @@ const pagesData = [
       "Responsive & Accessibility Design",
     ],
     buttonText: "Contact Us",
+    buttonLink: "/contact-us",
   },
   {
     id: 2,
@@ -44,6 +45,7 @@ const pagesData = [
       "Security Best Practices",
     ],
     buttonText: "Contact Us",
+    buttonLink: "/contact-us",
   },
   {
     id: 3,
@@ -60,6 +62,7 @@ const pagesData = [
       "Security & Maintenance",
     ],
     buttonText: "Contact Us",
+    buttonLink: "/contact-us",
   },
   {
     id: 4,
@@ -76,6 +79,7 @@ const pagesData = [
       "Security & Maintenance",
     ],
     buttonText: "Contact Us",
+    buttonLink: "/contact-us",
   },
 ];
 
@@ -272,7 +276,10 @@ export default function SkewedScroll() {
                       )}
                       {page.buttonText && (
                         <div className="skw-page__btn-wrapper">
-                          <ArrowButton text={page.buttonText} />
+                          <ArrowButton
+                            text={page.buttonText}
+                            link={page.buttonLink}
+                          />
                         </div>
                       )}
                     </>
@@ -321,7 +328,10 @@ export default function SkewedScroll() {
                       )}
                       {page.buttonText && (
                         <div className="skw-page__btn-wrapper">
-                          <ArrowButton text={page.buttonText} />
+                          <ArrowButton
+                            text={page.buttonText}
+                            link={page.buttonLink}
+                          />
                         </div>
                       )}
                     </>

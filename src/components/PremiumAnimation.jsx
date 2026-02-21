@@ -189,7 +189,6 @@ const PremiumAnimation = () => {
           alt="Premium Man"
           className="premium-image"
           ref={imageRef}
-          style={{ width: "800px", height: "800px" }}
         />
       </div>
 
@@ -209,6 +208,7 @@ const PremiumAnimation = () => {
               color: "#2C65E1",
             }}
             icon={ArrowBlue}
+            link="/contact-us"
           />
         </div>
       </div>

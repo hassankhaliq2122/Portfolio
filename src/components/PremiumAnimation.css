@@ -83,6 +83,8 @@
 }
 
 .premium-image {
+  width: 800px;
+  height: 800px;
   max-width: 80%;
   max-height: 90vh;
   object-fit: contain;
@@ -191,4 +193,119 @@
     transform: scale(0);
     background: rgba(255, 255, 255, 0.4);
     pointer-events: none;
+}
+
+/* --- Mobile Responsiveness --- */
+
+/* Base image fix for background text */
+.premium-bg-text img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .premium-bg-text-container {
+    top: 30%;
+  }
+
+  .premium-bg-text img {
+    width: 90%;
+  }
+
+  .premium-image {
+    width: 600px;
+    height: 600px;
+    max-height: 60vh;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .premium-animation-container::after {
+    height: 150px;
+  }
+
+  .premium-bg-text-container {
+    top: 25%;
+  }
+
+  .premium-bg-text img {
+    width: 95%;
+  }
+
+  .premium-image {
+    width: 400px;
+    height: 400px;
+    max-height: 50vh;
+    max-width: 95%;
+  }
+
+  .premium-content {
+    top: 75%;
+    padding: 15px;
+    gap: 16px;
+  }
+
+  .premium-content h1 {
+    font-size: 32px;
+  }
+
+  .premium-content p {
+    font-size: 15px;
+  }
+
+  .premium-content .premium-btn-container .arrow-btn {
+    height: 50px !important;
+    min-width: 180px !important;
+    font-size: 16px !important;
+    padding: 0 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .premium-bg-text-container {
+    top: 20%;
+  }
+
+  .premium-bg-text img {
+    width: 100%;
+    transform: scale(1.1);
+  }
+
+  .premium-image {
+    width: 100%;
+    height: 350px;
+    max-height: 45vh;
+  }
+
+  .premium-content {
+    top: 72%;
+    gap: 12px;
+  }
+
+  .premium-content h1 {
+    font-size: 26px;
+  }
+
+  .premium-content p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .premium-content .premium-btn-container .arrow-btn {
+    height: 45px !important;
+    min-width: 160px !important;
+    font-size: 15px !important;
+    padding: 0 20px !important;
+  }
+
+  .premium-content .premium-btn-container .arrow-btn .arrow-btn-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  .premium-content .premium-btn-container .arrow-btn .arrow-btn-wrapper {
+    width: 32px !important;
+    height: 32px !important;
+  }
 }

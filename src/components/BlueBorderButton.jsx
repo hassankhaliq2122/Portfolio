@@ -36,6 +36,7 @@ const BlueBorderButton = ({ text, onClick, className = "", style }) => {
         maxWidth: "75px",
         width: "auto",
         height: "48px",
+
         cursor: "pointer",
         display: "flex",
         alignItems: "center",

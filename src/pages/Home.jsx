@@ -101,6 +101,7 @@ const Home = () => {
             text="Start Your Project"
             className="start-project-btn arrow-btn"
             enableStarBorder={true}
+            link="/contact-us"
           />
         </div>
         <AnimatedContentUse />

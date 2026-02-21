@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import TransitionLink from "./TransitionLink";
 import BlueBorderButton from "./BlueBorderButton";
 import ArrowBlue from "../assets/icons/ArrowBlue.svg";
 import Arrow from "../assets/icons/arrow.svg";
 import ArrowBlack from "../assets/icons/ArrowBlack.svg";
 import "./FullPageMenu.css";
 import MenuFooter from "../assets/homePage/MenuFooter.png";
+// import About from "../pages/About";
 const menuItems = [
   { label: "Home", link: "/" },
   { label: "Work", link: "/work" },
   { label: "Services", link: "/services" },
-  { label: "About", link: "/contact-us" },
+  { label: "About", link: "/about" },
 ];
 
 const serviceItems = [
@@ -261,15 +263,15 @@ const FullPageMenu = () => {
             <nav className="menu-navigation">
               {menuItems.map((item, index) => (
                 <div key={item.label} className="menu-item-wrapper">
-                  <a
-                    href={item.link}
+                  <TransitionLink
+                    to={item.link}
                     className="menu-link"
                     ref={(el) => (menuItemRefs.current[index] = el)}
                     onClick={closeMenu}
                   >
                     <span className="menu-link-number">0{index + 1}</span>
                     <span className="menu-link-text">{item.label}</span>
-                  </a>
+                  </TransitionLink>
                   <hr className="menu-divider" />
                 </div>
               ))}

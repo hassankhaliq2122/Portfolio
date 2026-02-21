@@ -3,13 +3,13 @@
     min-height: 15vh;
     height: auto;
     align-items: center;
-    /* padding: 0px 0; */
+    /* padding: 20px 0; */
     width: 100%;
 }
 
 .ltf-word {
   font-size: clamp(24px, 6vw, 80px);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
   word-wrap: break-word;
   overflow-wrap: break-word;

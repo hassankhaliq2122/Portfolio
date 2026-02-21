@@ -15,6 +15,7 @@ const projects = [
   {
     id: 1,
     number: "01",
+    slug: "darbpay",
     title: "Premium Business Website — Darbpay",
     description:
       "A luxury fintech website experience built to inspire trust, simplify complex ideas, and drive high-value conversions through premium UI and performance-led development.",
@@ -23,6 +24,7 @@ const projects = [
   {
     id: 2,
     number: "02",
+    slug: "rozee-digital",
     title: "Rozee Digital Agency — Agency Website",
     description:
       "A bold and modern premium agency website designed to showcase expertise, build authority, and convert visitors into qualified leads through refined UI and strategic UX.",
@@ -31,6 +33,7 @@ const projects = [
   {
     id: 3,
     number: "03",
+    slug: "vfairco",
     title: "vFairCo — SaaS Website",
     description:
       "A conversion-focused premium SaaS website crafted to clearly communicate value, simplify complex features, and drive product adoption with clean design and scalable development.",
@@ -39,6 +42,7 @@ const projects = [
   {
     id: 4,
     number: "04",
+    slug: "appforshare",
     title: "AppForShare — App Platform Website",
     description:
       "A sleek and intuitive premium app platform website built to highlight functionality, enhance user trust, and support growth through performance-driven design and development.",
@@ -49,15 +53,44 @@ const projects = [
 const HomePageProjects = () => {
   const containerRef = useRef(null);
   const panelsRef = useRef([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useGSAP(
     () => {
+      // Don't run GSAP animations on mobile
+      if (isMobile) {
+        // On mobile, show all panels stacked
+        const panels = panelsRef.current.filter(Boolean);
+        panels.forEach((panel) => {
+          gsap.set(panel, {
+            autoAlpha: 1,
+            y: 0,
+            position: "relative",
+            opacity: 1,
+          });
+        });
+
+        // Kill any existing ScrollTrigger
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        return;
+      }
+
       const panels = panelsRef.current.filter(Boolean);
       const totalPanels = panels.length;
 
-      // Set initial states
-      // Panel 0: Visible, y: 0
-      // Others: Invisible, y: 50 (entering from bottom)
+      // Set initial states for desktop
       panels.forEach((panel, i) => {
         if (i === 0) {
           gsap.set(panel, { autoAlpha: 1, y: 0 });
@@ -66,30 +99,25 @@ const HomePageProjects = () => {
         }
       });
 
-      // Create a timeline connected to scroll
+      // Create timeline for desktop
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: () => `+=${window.innerHeight * (totalPanels - 1.5)}`, // Reduced scroll length for faster transition
+          end: () => `+=${window.innerHeight * (totalPanels - 1.5)}`,
           pin: true,
           pinSpacing: true,
-          scrub: 1, // Smooth scrubbing to match PremiumAnimation
+          scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      // Build the timeline transitions
-      // For each panel transition:
-      // 1. Current Panel fades out and moves up
-      // 2. Next Panel fades in and moves to center
+      // Build desktop transitions
       panels.forEach((panel, i) => {
         if (i < totalPanels - 1) {
           const nextPanel = panels[i + 1];
-
           tl.add(`step${i}`)
-            // Current panel leaves
             .to(
               panel,
               {
@@ -100,7 +128,6 @@ const HomePageProjects = () => {
               },
               `step${i}`,
             )
-            // Next panel enters
             .to(
               nextPanel,
               {
@@ -110,13 +137,10 @@ const HomePageProjects = () => {
                 ease: "power1.inOut",
               },
               `step${i}`,
-            ); // Prefer overlapping slightly? Sync is usually fine.
-
-          // Add a small pause/gap? No, continuous is usually smoother.
+            );
         }
       });
 
-      // Force refresh
       gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
 
       return () => {
@@ -124,24 +148,27 @@ const HomePageProjects = () => {
         tl.kill();
       };
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [isMobile] },
   );
 
   return (
-    <div ref={containerRef} className="work-delivered-wrapper">
+    <div
+      ref={containerRef}
+      className={`work-delivered-wrapper ${isMobile ? "mobile-view" : ""}`}
+    >
       <div className="static-header">
-        <h1>Work We’ve Delivered</h1>
+        <h1>Work We've Delivered</h1>
         <p>
           A curated selection of premium and luxury website projects crafted to
           elevate brands, drive engagement, and deliver measurable impact.
         </p>
       </div>
 
-      <div className="projects-stack">
+      <div className={`projects-stack ${isMobile ? "mobile-stack" : ""}`}>
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className="project-panel"
+            className={`project-panel ${isMobile ? "mobile-panel" : ""}`}
             ref={(el) => (panelsRef.current[index] = el)}
           >
             <div className="project-grid">
@@ -158,21 +185,37 @@ const HomePageProjects = () => {
                 <p className="project-desc">{project.description}</p>
                 <ArrowButton
                   text="View Full Case Study"
-                  style={{ maxWidth: "235px", width: "auto" }}
+                  className="case-study-btn"
+                  link={`/work/${project.slug}`}
                 />
               </div>
             </div>
-            {/* Visual Progress / Controls (Visual only) */}
-            <div className="project-footer">
-              <span className="page-indicator">
-                [{project.number}/{projects.length.toString().padStart(2, "0")}]
-              </span>
-              <div className="nav-arrows">{/* Icons could go here */}</div>
-              <div className="view-all">VIEW ALL PROJECTS ↗</div>
-            </div>
+
+            {/* Footer - Hidden on mobile */}
+            {!isMobile && (
+              <div className="project-footer">
+                <span className="page-indicator">
+                  [{project.number}/
+                  {projects.length.toString().padStart(2, "0")}]
+                </span>
+                <div className="view-all">VIEW ALL PROJECTS ↗</div>
+              </div>
+            )}
           </div>
         ))}
       </div>
+
+      {/* Mobile navigation indicator */}
+      {isMobile && (
+        <div className="mobile-navigation">
+          <div className="mobile-indicator">
+            {projects.map((_, index) => (
+              <div key={index} className="indicator-dot"></div>
+            ))}
+          </div>
+          <div className="view-all-mobile">VIEW ALL PROJECTS ↗</div>
+        </div>
+      )}
     </div>
   );
 };
