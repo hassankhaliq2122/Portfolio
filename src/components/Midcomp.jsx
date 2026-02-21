@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Mid_comp.css";
-import midImage from "../assets/Servicespage/Mid_Comp.png";
+import midImage from "../assets/Servicespage/MidComp.png";
 
 const Mid_comp = () => {
   const navigate = useNavigate();

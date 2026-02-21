@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Use regular Link since TransitionLin
 import { gsap } from "gsap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Mid_comp from "../components/Mid_comp";
+import Mid_comp from "../components/Midcomp";
 import { useProjects } from "../context/ProjectContext";
 import TransitionLink from "../components/TransitionLink";
 import "../components/ProjectCard.css"; // Shared card styles
