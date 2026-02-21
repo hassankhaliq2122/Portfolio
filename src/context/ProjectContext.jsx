@@ -9,7 +9,7 @@ export const ProjectProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = "http://localhost:5000/api/projects";
+  const API_URL = `${import.meta.env.VITE_API_URL || "https://portfolio-backend-production-a954.up.railway.app"}/api/projects`;
 
   // Fetch all projects
   const fetchProjects = async () => {

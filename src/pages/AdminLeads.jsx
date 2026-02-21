@@ -15,7 +15,9 @@ import {
 } from "lucide-react";
 import "./AdminLeads.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://portfolio-backend-production-a954.up.railway.app";
 
 const MONTHS = [
   "Jan",

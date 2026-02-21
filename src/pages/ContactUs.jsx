@@ -10,7 +10,9 @@ import RecycleIcon from "../assets/contactUs/recycle.svg";
 import EmoIcon from "../assets/contactUs/emo.svg";
 import PixelCards from "../components/PixelCards";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://portfolio-backend-production-a954.up.railway.app";
 
 const countries = [
   "Afghanistan",
