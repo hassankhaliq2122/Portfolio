@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { Link } from "react-router-dom";
 import InteractiveGlobe from "./InteractiveGlobe";
+import ArrowButton from "../../components/ArrowButton";
 
 const HeroSection = () => {
   const sectionRef = useRef(null);
@@ -65,9 +65,6 @@ const HeroSection = () => {
     <section className="about-hero" ref={sectionRef}>
       <div className="about-hero__content">
         <div className="about-hero__text">
-          <p className="about-hero__label" ref={labelRef}>
-            Digital Engineering Studio
-          </p>
           <h1 className="about-hero__heading" ref={headingRef}>
             Engineering Premium Digital Experiences.
           </h1>
@@ -75,22 +72,7 @@ const HeroSection = () => {
             We build high-performance websites and SaaS platforms for brands
             that refuse to look ordinary.
           </p>
-          <Link to="/contact-us" className="about-hero__cta" ref={ctaRef}>
-            <span>Start a Project</span>
-            <svg
-              className="about-hero__cta-arrow"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </Link>
+          <ArrowButton link="/contact-us" text="Start a Project" ref={ctaRef} />
         </div>
 
         <div className="about-hero__globe-wrap">

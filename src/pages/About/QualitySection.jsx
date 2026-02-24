@@ -81,7 +81,6 @@ const QualitySection = () => {
     <section className="about-quality" ref={sectionRef}>
       <div className="about-quality__inner">
         <div className="about-quality__header">
-          <p className="about-quality__label">Our Standard</p>
           <h2 className="about-quality__title">Proof of Quality</h2>
         </div>
         <div className="about-quality__grid">

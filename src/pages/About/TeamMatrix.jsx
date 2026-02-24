@@ -95,7 +95,6 @@ const TeamMatrix = () => {
     <section className="about-team" ref={sectionRef}>
       <div className="about-team__inner">
         <div className="about-team__header">
-          <p className="about-team__label">The Team</p>
           <h2 className="about-team__title">Engineering Excellence</h2>
         </div>
         <div className="about-team__grid">

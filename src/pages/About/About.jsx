@@ -7,7 +7,7 @@ import HeroSection from "./HeroSection";
 import StudioIntro from "./StudioIntro";
 import ServiceMatrix from "./ServiceMatrix";
 import ProcessTimeline from "./ProcessTimeline";
-import FounderSpotlight from "./FounderSpotlight";
+// import FounderSpotlight from "./FounderSpotlight";
 import TeamMatrix from "./TeamMatrix";
 import QualitySection from "./QualitySection";
 import CTASection from "./CTASection";
@@ -42,7 +42,7 @@ const About = () => {
         <StudioIntro />
         <ServiceMatrix />
         <ProcessTimeline />
-        <FounderSpotlight />
+        {/* <FounderSpotlight /> */}
         <TeamMatrix />
         <QualitySection />
         <CTASection />

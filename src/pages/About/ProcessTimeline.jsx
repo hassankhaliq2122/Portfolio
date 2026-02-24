@@ -78,7 +78,6 @@ const ProcessTimeline = () => {
     <section className="about-process" ref={sectionRef}>
       <div className="about-process__inner">
         <div className="about-process__header">
-          <p className="about-process__label">Our Process</p>
           <h2 className="about-process__title">Engineering Standard</h2>
         </div>
         <div className="about-process__timeline">

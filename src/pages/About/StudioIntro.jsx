@@ -61,7 +61,6 @@ const StudioIntro = () => {
   return (
     <section className="about-studio" ref={sectionRef}>
       <div className="about-studio__inner">
-        <p className="about-studio__label">Who We Are</p>
         <p className="about-studio__text">
           We are a premium web engineering agency focused on performance,
           scalability, and precision execution. Every system we build is

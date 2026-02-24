@@ -181,7 +181,6 @@ const ServiceMatrix = () => {
     <section className="about-services" ref={sectionRef}>
       <div className="about-services__inner">
         <div className="about-services__header">
-          <p className="about-services__label">What We Build</p>
           <h2 className="about-services__title">Engineered Solutions</h2>
         </div>
         <div className="about-services__grid">
