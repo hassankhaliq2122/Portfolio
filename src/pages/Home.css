@@ -411,7 +411,7 @@
    }
    
    .home-split-text-container {
-       margin-top: 32px;
+       margin-top: 5rem;
        padding: 32px 0;
        gap: 32px;
        flex-direction: column;
