@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ServicesDrawer.css";
 import AnimatedContent from "./ui/AnimatedContent";
 import TubeCursor from "./TubeCursor";
@@ -33,6 +33,16 @@ const services = [
 
 const ServicesDrawer = () => {
   const [activeId, setActiveId] = useState("01");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const handleToggle = (id) => {
     // If clicking already active, keep it active or toggle to null?
@@ -88,7 +98,7 @@ const ServicesDrawer = () => {
                   activeId === service.id ? "active" : ""
                 }`}
                 onClick={() => handleToggle(service.id)}
-                transition={smoothTransition}
+                transition={isMobile ? { duration: 0 } : smoothTransition}
               >
                 <div className="service-header">
                   <h3 className="service-name">{service.title}</h3>
@@ -100,18 +110,36 @@ const ServicesDrawer = () => {
                     <motion.div
                       key="content"
                       className="service-body"
-                      initial={{ height: 0, opacity: 0 }}
+                      initial={
+                        isMobile
+                          ? { height: "auto", opacity: 1 }
+                          : { height: 0, opacity: 0 }
+                      }
                       animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={smoothTransition}
+                      exit={
+                        isMobile
+                          ? { height: 0, opacity: 1 }
+                          : { height: 0, opacity: 0 }
+                      }
+                      transition={isMobile ? { duration: 0 } : smoothTransition}
                     >
                       <div className="service-content-wrapper">
                         <motion.p
                           className="service-description"
-                          initial={{ y: 20, opacity: 0 }}
+                          initial={
+                            isMobile
+                              ? { y: 0, opacity: 1 }
+                              : { y: 20, opacity: 0 }
+                          }
                           animate={{ y: 0, opacity: 1 }}
-                          exit={{ y: 10, opacity: 0 }}
-                          transition={{ duration: 0.4 }}
+                          exit={
+                            isMobile
+                              ? { y: 0, opacity: 1 }
+                              : { y: 10, opacity: 0 }
+                          }
+                          transition={
+                            isMobile ? { duration: 0 } : { duration: 0.4 }
+                          }
                         >
                           {service.description}
                         </motion.p>

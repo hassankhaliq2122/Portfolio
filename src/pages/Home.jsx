@@ -60,6 +60,9 @@ const Home = () => {
       setTimeout(() => {
         ScrollTrigger.refresh();
       }, 500);
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 1000);
     };
     window.addEventListener("load", handleWindowLoad);
 
