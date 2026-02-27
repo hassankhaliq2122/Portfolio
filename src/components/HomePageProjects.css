@@ -467,67 +467,83 @@
 /* Mobile Portrait (480px - 576px) */
 @media (max-width: 576px) and (min-width: 376px) {
   .static-header {
-    top: 60px;
+    top: 50px;
     padding: 0 20px;
+    text-align: left;
+    left: 0;
+    transform: none;
   }
   
   .static-header h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 32px;
+    margin-bottom: 15px;
   }
   
   .static-header p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5;
+    text-align: left;
+    margin: 0;
+    max-width: 100%;
   }
   
   .projects-stack.mobile-stack {
-    padding-top: 140px;
+    padding-top: 180px;
     padding-bottom: 50px;
     gap: 40px;
   }
   
   .project-number {
     font-size: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: left;
   }
   
   .project-title {
-    font-size: 22px;
+    font-size: 24px;
+    text-align: left;
   }
   
   .project-desc {
-    font-size: 14px;
+    font-size: 15px;
+    text-align: left;
+    max-width: 100%;
   }
   
+  .mobile-panel .project-grid {
+    align-items: flex-start;
+  }
+
   .mobile-navigation {
     bottom: 15px;
     width: 90%;
     padding: 10px 15px;
-  }
-  
-  .view-all-mobile {
-    font-size: 13px;
   }
 }
 
 /* Small Mobile (375px and below) */
 @media (max-width: 375px) {
   .static-header {
-    top: 50px;
+    top: 30px;
     padding: 0 16px;
+    text-align: left;
+    left: 0;
+    transform: none;
   }
   
   .static-header h1 {
-    font-size: 22px;
+    font-size: 28px;
+    margin-bottom: 10px;
   }
   
   .static-header p {
-    font-size: 13px;
+    font-size: 14px;
+    text-align: left;
+    margin: 0;
   }
   
   .projects-stack.mobile-stack {
-    padding-top: 120px;
+    padding-top: 140px;
     padding-bottom: 40px;
     gap: 30px;
   }
@@ -538,15 +554,19 @@
   
   .project-number {
     font-size: 14px;
+    margin-bottom: 10px;
+    text-align: left;
   }
   
   .project-title {
     font-size: 20px;
+    text-align: left;
   }
   
   .project-desc {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.4;
+    text-align: left;
   }
   
   .mobile-navigation {

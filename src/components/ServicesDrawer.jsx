@@ -72,11 +72,7 @@ const ServicesDrawer = () => {
         <div className="services-drawer-container">
           {/* Left Side */}
           <div className="services-left">
-            <h2 className="services-title">
-              Our Premium
-              <br />
-              Services
-            </h2>
+            <h2 className="services-title">Our Premium Services</h2>
             <p className="services-note">
               Proactive Customer Engagement & Follow-Ups
             </p>

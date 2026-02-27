@@ -3,7 +3,7 @@ import headerLogo from "../assets/logo/Header.svg";
 import "./Header.css";
 import ArrowButton from "./ArrowButton";
 import FullPageMenu from "./FullPageMenu";
-import { AnimatedThemeToggler } from "./ui/AnimatedThemeToggler";
+// import { AnimatedThemeToggler } from "./ui/AnimatedThemeToggler";
 
 const Header = () => {
   const [hidden, setHidden] = useState(false);
@@ -45,7 +45,7 @@ const Header = () => {
             <li>
               <p className="headerText">Let's brand up your website</p>
             </li>
-            <AnimatedThemeToggler className="text-gray-700 dark:text-gray-200" />
+            {/* <AnimatedThemeToggler className="text-gray-700 dark:text-gray-200" /> */}
             <ArrowButton text="Contact Us" link="/contact-us" />
             <FullPageMenu />
           </ul>

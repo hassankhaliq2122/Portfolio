@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,6 +11,7 @@ import { TransitionProvider } from "./context/TransitionContext";
 import { ProjectProvider } from "./context/ProjectContext";
 import ContactUs from "./pages/ContactUs";
 import About from "./pages/About/About";
+import PremiumLoader from "./components/PremiumLoader";
 import "./App.css";
 
 // Lazy-loaded pages
@@ -21,8 +22,7 @@ const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const AdminLeads = lazy(() => import("./pages/AdminLeads"));
 
-// Loader component for Suspense fallback
-const Loader = () => <div className="loader">Loading...</div>;
+// PremiumLoader handles Suspense fallback automatically as an overlay
 
 // Wrapper to trigger PageTransition on route changes
 const RouteWrapper = ({ children }) => {
@@ -37,12 +37,18 @@ const RouteWrapper = ({ children }) => {
 };
 
 const App = () => {
+  const [showInitialLoader, setShowInitialLoader] = useState(true);
+
+  if (showInitialLoader) {
+    return <PremiumLoader onComplete={() => setShowInitialLoader(false)} />;
+  }
+
   return (
     <Router>
       <ProjectProvider>
         <TransitionProvider>
           <SmoothScroll>
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<PremiumLoader />}>
               <RouteWrapper>
                 <Routes>
                   <Route path="/" element={<Home />} />
