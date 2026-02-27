@@ -57,6 +57,9 @@ const Home = () => {
       setTimeout(() => {
         ScrollTrigger.refresh();
       }, 100);
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 500);
     };
     window.addEventListener("load", handleWindowLoad);
 
@@ -103,7 +106,7 @@ const Home = () => {
               splitType="chars"
               from={{ opacity: 0, y: 40 }}
               to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
+              threshold={0.05}
               textAlign="left"
             />
           </div>
@@ -118,7 +121,7 @@ const Home = () => {
               splitType="chars"
               from={{ opacity: 0, y: 40 }}
               to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
+              threshold={0.05}
               textAlign="left"
             />
             <SplitText
@@ -129,7 +132,7 @@ const Home = () => {
               splitType="words"
               from={{ opacity: 0, y: 20 }}
               to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
+              threshold={0.05}
               textAlign="left"
             />
           </div>
@@ -144,7 +147,7 @@ const Home = () => {
               splitType="chars"
               from={{ opacity: 0, y: 40 }}
               to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
+              threshold={0.05}
               textAlign="left"
             />
             <SplitText
@@ -155,7 +158,7 @@ const Home = () => {
               splitType="words"
               from={{ opacity: 0, y: 20 }}
               to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
+              threshold={0.05}
               textAlign="left"
             />
           </div>
@@ -170,7 +173,7 @@ const Home = () => {
               splitType="chars"
               from={{ opacity: 0, y: 40 }}
               to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
+              threshold={0.05}
               textAlign="left"
             />
             <SplitText
@@ -181,7 +184,7 @@ const Home = () => {
               splitType="words"
               from={{ opacity: 0, y: 20 }}
               to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
+              threshold={0.05}
               textAlign="left"
             />
           </div>
