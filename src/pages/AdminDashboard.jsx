@@ -632,7 +632,7 @@ const AdminDashboard = () => {
                 </button>
               </div>
 
-              {/* Tags */}
+              {/* Tag*/}
               <div className="form-group">
                 <label>Design Tags</label>
                 <input
