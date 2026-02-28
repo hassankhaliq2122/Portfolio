@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useProjects } from "../context/ProjectContext";
 import "./AdminDashboard.css";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const { projects, addProject, updateProject, deleteProject, fetchProjects } =
@@ -299,7 +300,10 @@ const AdminDashboard = () => {
             </button>
           )}
         </div>
-
+        <Link to="/admin/leads">
+          {" "}
+          <button className="logout-btn">Go To Leads</button>
+        </Link>
         {view === "list" ? (
           <div className="admin-project-list">
             {projects.map((project) => (
