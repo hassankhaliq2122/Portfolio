@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./PremiumAnimation.css";
@@ -16,6 +16,8 @@ const PremiumAnimation = () => {
   const contentRef = useRef(null);
   const gridRef = useRef(null);
   const rippleContainerRef = useRef(null);
+  const ctxRef = useRef(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -111,10 +113,38 @@ const PremiumAnimation = () => {
 
       // IMPORTANT: Refresh AFTER timeline is fully defined
       // Use a small delay to ensure React has finished rendering
-      gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
+      gsap.delayedCall(0.1, () => {
+        ScrollTrigger.refresh();
+        // Only show the container AFTER ScrollTrigger has positioned everything
+        setIsReady(true);
+      });
     }, containerRef);
 
-    return () => ctx.revert();
+    ctxRef.current = ctx;
+
+    return () => {
+      // Hide immediately on unmount to prevent gradient flash
+      setIsReady(false);
+      ctx.revert();
+    };
+  }, []);
+
+  // Use useLayoutEffect for synchronous cleanup before paint on unmount
+  // This ensures the gradient is hidden before the browser paints the next frame
+  useLayoutEffect(() => {
+    return () => {
+      // Force-hide the container synchronously before paint
+      if (containerRef.current) {
+        containerRef.current.style.visibility = "hidden";
+        containerRef.current.style.opacity = "0";
+      }
+      // Kill all ScrollTrigger instances associated with this component
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger === containerRef.current) {
+          st.kill();
+        }
+      });
+    };
   }, []);
 
   const handleRippleClick = (e) => {
@@ -164,7 +194,15 @@ const PremiumAnimation = () => {
   // The CSS implementation handles the grid lines.
 
   return (
-    <div className="premium-animation-container" ref={containerRef}>
+    <div
+      className="premium-animation-container"
+      ref={containerRef}
+      style={{
+        visibility: isReady ? "visible" : "hidden",
+        opacity: isReady ? 1 : 0,
+        transition: "opacity 0.3s ease",
+      }}
+    >
       {/* Grid Background */}
       <div className="grid-background" ref={gridRef}></div>
 
