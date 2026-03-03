@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import "./ServicesDrawer.css";
 import AnimatedContent from "./ui/AnimatedContent";
-import TubeCursor from "./TubeCursor";
 
 const services = [
   {
@@ -65,7 +64,6 @@ const ServicesDrawer = () => {
 
   return (
     <div className="services-drawer-section">
-      <TubeCursor />
       <AnimatedContent
         direction="vertical"
         distance={100}

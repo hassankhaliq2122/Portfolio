@@ -2,12 +2,10 @@ import React from "react";
 import "./Results.css";
 import CountUpUse from "./CountUpUse";
 import GlowingBorderWrapper from "./ui/GlowingBorder";
-import TubeCursor from "./TubeCursor";
 
 const Results = () => {
   return (
     <div className="results-container">
-      <TubeCursor />
       <div className="resultsLeft">
         <h1>Proven Result</h1>
         <div className="results-inline-wrapper">
