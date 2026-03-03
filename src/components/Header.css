@@ -51,9 +51,6 @@
     transition: color 0.3s ease;
 }
 
-.dark .headerText {
-    color: #ffffff;
-}
 
 /* ===== Tablet Styles ===== */
 @media (max-width: 1024px) {

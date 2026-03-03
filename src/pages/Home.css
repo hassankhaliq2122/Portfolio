@@ -55,9 +55,6 @@
    transition: color 0.3s ease;
 }
 
-.dark .home-description {
-   color: #d1d5db;
-}
 
 .home-buttons {
    display: flex;
@@ -108,8 +105,9 @@
    display: flex;
    align-items: flex-start;
    gap: 0;
-   margin-top: 40px;
+   margin-top: clamp(3rem, 10vw, 8rem);
    padding: 40px 0;
+   margin-bottom: clamp(2rem, 8vw, 5rem);
    width: 100%;
    flex-wrap: wrap;
 }
@@ -140,9 +138,6 @@
    transition: background-color 0.3s ease;
 }
 
-.dark .split-divider {
-   background-color: #374151;
-}
 
 .split-intro-text {
    font-size: 16px;
@@ -152,9 +147,6 @@
    transition: color 0.3s ease;
 }
 
-.dark .split-intro-text {
-   color: #9ca3af;
-}
 
 .split-heading {
    font-size: 24px;
@@ -165,9 +157,6 @@
    transition: color 0.3s ease;
 }
 
-.dark .split-heading {
-   color: #ffffff;
-}
 
 .split-paragraph {
    font-size: 16px;
@@ -178,10 +167,6 @@
    transition: color 0.3s ease;
 }
 
-.dark .split-paragraph {
-   color: #9ca3af;
- 
-}
 
 /* ===== RESPONSIVE BREAKPOINTS ===== */
 
@@ -221,15 +206,16 @@
    
    .home-split-text-container {
        flex-wrap: wrap;
-       gap: 0;
+       gap: 32px 16px;
        padding: 32px 0;
+       margin-top: 5rem;
    }
    
    .split-text-intro {
        flex: 0 0 100%;
        padding-right: 0;
-       padding-bottom: 32px;
-       margin-bottom: 32px;
+       padding-bottom: 24px;
+       margin-bottom: 0;
        border-bottom: 1px solid #E0E0E0;
    }
    
@@ -240,18 +226,18 @@
    .split-text-strategy,
    .split-text-design,
    .split-text-built {
-       flex: 1 1 calc(33.333% - 32px);
+       flex: 1 1 calc(33.333% - 22px);
        padding: 0;
-       margin: 0 16px;
-       min-width: 180px;
+       margin: 0;
+       min-width: 200px;
    }
    
    .split-heading {
-       font-size: 20px;
+       font-size: clamp(18px, 2.5vw, 22px);
    }
    
    .split-paragraph {
-       font-size: 15px;
+       font-size: clamp(14px, 1.6vw, 16px);
    }
 }
 
@@ -410,39 +396,44 @@
        width: auto;
    }
    
-   .home-split-text-container {
-       margin-top: 5rem;
-       padding: 32px 0;
-       gap: 32px;
-       flex-direction: column;
-   }
-   
-   .split-text-intro {
-       padding-bottom: 0;
-       border-bottom: none;
-       margin-bottom: 0;
-       font-size: 18px;
-   }
-   
-   .split-intro-text {
-       font-size: 16px;
-       text-align: left;
-   }
+    .home-split-text-container {
+        margin-top: 3rem;
+        padding: 24px 0;
+        gap: 24px;
+        flex-direction: column;
+    }
+    
+    .split-text-intro {
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    
+    .split-intro-text {
+        font-size: clamp(15px, 4vw, 18px);
+        text-align: left;
+    }
 
-   .split-text-strategy,
-   .split-text-design,
-   .split-text-built {
-       margin: 0;
-       padding: 0;
-   }
-   
-   .split-heading {
-       font-size: 24px;
-   }
-   
-   .split-paragraph {
-       font-size: 18px;
-   }
+    .split-text-strategy,
+    .split-text-design,
+    .split-text-built {
+        margin: 0;
+        padding: 0 0 20px 0;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .split-text-built {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    .split-heading {
+        font-size: clamp(20px, 6vw, 24px);
+    }
+    
+    .split-paragraph {
+        font-size: clamp(16px, 4.5vw, 18px);
+    }
 }
 
 /* Small Mobile (375px and below) */
@@ -486,24 +477,23 @@
        min-width: 160px;
    }
    
-   .home-split-text-container {
-       margin-top: 24px;
-       padding: 24px 0;
-       gap: 20px;
-   }
-   
-   .split-intro-text {
-       font-size: 15px;
-       text-align: left;
-   }
-   
-   .split-heading {
-       font-size: 18px;
-   }
-   
-   .split-paragraph {
-       font-size: 14px;
-   }
+    .home-split-text-container {
+        margin-top: 2rem;
+        padding: 20px 0;
+        gap: 20px;
+    }
+    
+    .split-intro-text {
+        font-size: 14px;
+    }
+    
+    .split-heading {
+        font-size: 17px;
+    }
+    
+    .split-paragraph {
+        font-size: 14px;
+    }
 }
 
 /* Safe Area Support for Notches */
