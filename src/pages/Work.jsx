@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Mid_comp from "../components/Midcomp";
 import { useProjects } from "../context/ProjectContext";
-import TransitionLink from "../components/TransitionLink";
 import "../components/ProjectCard.css"; // Shared card styles
 import "./Work.css";
 
@@ -49,7 +48,7 @@ const Work = () => {
         ) : (
           <div className="projects-grid">
             {projects.map((project) => (
-              <TransitionLink
+              <Link
                 key={project._id}
                 to={`/work/${project.slug}`}
                 className="project-card"
@@ -77,7 +76,7 @@ const Work = () => {
                     <div className="btn-arrow"></div>
                   </div>
                 </div>
-              </TransitionLink>
+              </Link>
             ))}
           </div>
         )}

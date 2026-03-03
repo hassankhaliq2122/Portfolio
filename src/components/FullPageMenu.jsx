@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-import TransitionLink from "./TransitionLink";
 import BlueBorderButton from "./BlueBorderButton";
 import ArrowBlue from "../assets/icons/ArrowBlue.svg";
 import Arrow from "../assets/icons/arrow.svg";
@@ -263,7 +263,7 @@ const FullPageMenu = () => {
             <nav className="menu-navigation">
               {menuItems.map((item, index) => (
                 <div key={item.label} className="menu-item-wrapper">
-                  <TransitionLink
+                  <Link
                     to={item.link}
                     className="menu-link"
                     ref={(el) => (menuItemRefs.current[index] = el)}
@@ -271,7 +271,7 @@ const FullPageMenu = () => {
                   >
                     <span className="menu-link-number">0{index + 1}</span>
                     <span className="menu-link-text">{item.label}</span>
-                  </TransitionLink>
+                  </Link>
                   <hr className="menu-divider" />
                 </div>
               ))}

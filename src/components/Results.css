@@ -8,10 +8,6 @@
   transition: background-color 0.3s ease;
 }
 
-.dark .results-container {
-  background-color: transparent;
-}
-
 .resultsLeft, .resultRight {
   display: flex;
   flex-direction: column;
@@ -225,9 +221,6 @@ display: none;
   transition: color 0.3s ease;
 }
 
-.dark .resultsLeft h1 {
-  color: #ffffff;
-}
 
 .results-inline-wrapper {
   display: flex;
@@ -243,9 +236,6 @@ display: none;
   transition: color 0.3s ease;
 }
 
-.dark .resultsLeft p {
-  color: #a1a1aa; /* Light gray for dark mode */
-}
 
 .resultsTop p, .resultsBottom p {
   font-size: 2rem;
@@ -253,10 +243,6 @@ display: none;
   color: #000000;
 }
 
-.dark .resultsTop p, 
-.dark .resultsBottom p {
-  color: #ffffff;
-}
 
 .box1 p, .box2 p, .box3 p, .box4 p {
   font-size: 16px;
@@ -266,12 +252,6 @@ display: none;
   transition: color 0.3s ease;
 }
 
-.dark .box1 p, 
-.dark .box2 p, 
-.dark .box3 p, 
-.dark .box4 p {
-  color: #ffffff; /* Or a slight off-white */
-}
 
 .box1 h3, .box2 h3, .box3 h3, .box4 h3 {
   font-size: 80px;
@@ -280,12 +260,6 @@ display: none;
   transition: color 0.3s ease;
 }
 
-.dark .box1 h3, 
-.dark .box2 h3, 
-.dark .box3 h3, 
-.dark .box4 h3 {
-  color: #ffffff;
-}
 
 .count-up-text, .count-up-suffix {
   font-size: 80px;
@@ -294,10 +268,6 @@ display: none;
   transition: color 0.3s ease;
 }
 
-.dark .count-up-text, 
-.dark .count-up-suffix {
-  color: #ffffff;
-}
 
 .results-bottom-text {
   text-align: center;
@@ -309,9 +279,6 @@ display: none;
   transition: color 0.3s ease;
 }
 
-.dark .results-bottom-text {
-  color: #a1a1aa;
-}
 
 .box1, .box2, .box3, .box4 {
   /* ... existing styles ... */
@@ -319,13 +286,6 @@ display: none;
   transition: background-color 0.3s ease;
 }
 
-.dark .box1, 
-.dark .box2, 
-.dark .box3, 
-.dark .box4 {
-  background-color: #1a1a1a; /* Dark background for boxes */
-  border: 1px solid #333;
-}
 
 /* Update container background */
 .results-container {
@@ -338,9 +298,6 @@ display: none;
   transition: background-color 0.3s ease;
 }
 
-.dark .results-container {
-  background-color: transparent;
-}
 .glow-border {
   position: relative;
   z-index: 1;

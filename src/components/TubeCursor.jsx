@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./TubeCursor.css";
 
 const TubeCursor = ({
@@ -10,30 +10,11 @@ const TubeCursor = ({
 }) => {
   const canvasRef = useRef(null);
   const appRef = useRef(null);
-  const [isDark, setIsDark] = useState(false);
 
-  // Watch for dark theme changes
+  // Initialize/destroy cursor based on screen width
   useEffect(() => {
-    const updateTheme = () => {
-      setIsDark(document.documentElement.classList.contains("dark"));
-    };
-
-    updateTheme();
-
-    const observer = new MutationObserver(updateTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Initialize/destroy cursor based on dark theme
-  useEffect(() => {
-    // Skip on mobile or light mode
-    if (window.innerWidth < minWidth || !isDark) {
-      // Cleanup if exists
+    // Skip on mobile
+    if (window.innerWidth < minWidth) {
       if (appRef.current && appRef.current.dispose) {
         appRef.current.dispose();
       }
@@ -78,10 +59,7 @@ const TubeCursor = ({
       }
       appRef.current = null;
     };
-  }, [isDark, tubeColors, lightColors, lightIntensity, minWidth]);
-
-  // Only render when dark mode is active
-  if (!isDark) return null;
+  }, [tubeColors, lightColors, lightIntensity, minWidth]);
 
   return (
     <div className={`tube-cursor-wrapper ${className}`}>

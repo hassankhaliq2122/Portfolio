@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Mid_comp from "../components/Midcomp";
 import { useProjects } from "../context/ProjectContext";
-import TransitionLink from "../components/TransitionLink";
 import ArrowButton from "../components/ArrowButton";
 import "../components/ProjectCard.css"; // Shared card styles
 import "./ProjectDetail.css";
@@ -395,7 +394,7 @@ const ProjectDetail = () => {
             <div className="more-work-title">More of Our Work</div>
             <div className="projects-grid">
               {otherProjects.map((p) => (
-                <TransitionLink
+                <Link
                   key={p._id}
                   to={`/work/${p.slug}`}
                   className="project-card"
@@ -414,7 +413,7 @@ const ProjectDetail = () => {
                     </div>
                     <div className="project-arrow"></div>
                   </div>
-                </TransitionLink>
+                </Link>
               ))}
             </div>
           </div>

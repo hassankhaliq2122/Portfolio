@@ -19,9 +19,6 @@
   overflow: visible;
 }
 
-.dark .work-delivered-wrapper {
-  background-color: transparent !important;
-}
 
 .static-header {
   position: absolute;
@@ -68,9 +65,9 @@
   flex-direction: column;
   position: relative;
   height: auto;
-  padding-top: clamp(180px, 25vh, 250px);
-  padding-bottom: 80px;
-  gap: 60px;
+  padding-top: clamp(120px, 15vh, 180px);
+  padding-bottom: 60px;
+  gap: 40px;
   overflow: visible;
 }
 

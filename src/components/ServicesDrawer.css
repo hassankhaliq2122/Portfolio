@@ -8,9 +8,6 @@
   position: relative; /* Ensure relative positioning for TubeCursor absolute/fixed context if needed, though Tube is fixed */
 }
 
-.dark .services-drawer-section {
-  background-color: transparent;
-}
 
 .services-drawer-container {
   width: 1280px;
@@ -35,9 +32,6 @@
   transition: color 0.3s ease;
 }
 
-.dark .services-title {
-  color: #ffffff;
-}
 
 .services-note {
   font-size: 14px;
@@ -47,9 +41,6 @@
   transition: color 0.3s ease;
 }
 
-.dark .services-note {
-  color: #a0a0a0;
-}
 
 /* Right Column (Accordion) */
 .services-right {
