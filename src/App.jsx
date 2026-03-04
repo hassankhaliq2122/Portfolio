@@ -48,7 +48,7 @@ const App = () => {
       <ProjectProvider>
         <TransitionProvider>
           <SmoothScroll>
-            <Suspense fallback={<PremiumLoader />}>
+            <Suspense fallback={null}>
               <RouteWrapper>
                 <Routes>
                   <Route path="/" element={<Home />} />
