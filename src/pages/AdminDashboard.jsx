@@ -45,7 +45,7 @@ const AdminDashboard = () => {
   // Simple Auth Check
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "admin123") {
+    if (password === "@Metaman123") {
       setIsAuthenticated(true);
       fetchProjects();
     } else {
