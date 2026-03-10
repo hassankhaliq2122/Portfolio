@@ -26,9 +26,13 @@ const AdminDashboard = () => {
       { type: "landscape", images: [""] },
     ],
     goals: ["", "", "", ""], // Minimum 4 goals
-    designTags: "",
-    devTags: "",
-    secondGallery: ["", "", ""],
+    designTags: [""],
+    devTags: [""],
+    secondGallery: [
+      { type: "landscape", images: [""] },
+      { type: "squares", images: ["", ""] },
+      { type: "landscape", images: [""] },
+    ],
     role: "", // detailed role
     teamRoles: "", // New field
     timeline: "",
@@ -66,15 +70,15 @@ const AdminDashboard = () => {
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64 = reader.result;
-      if (field === "galleryImages") {
+      if (field === "galleryImages" || field === "secondGallery") {
         // Handle structured gallery
         setFormData((prev) => {
-          const newGallery = [...prev.galleryImages];
+          const newGallery = [...prev[field]];
           newGallery[index].images[subIndex] = base64;
-          return { ...prev, galleryImages: newGallery };
+          return { ...prev, [field]: newGallery };
         });
       } else if (index !== null) {
-        // Simple array field (secondGallery)
+        // Simple array field
         setFormData((prev) => {
           const newArray = [...prev[field]];
           newArray[index] = base64;
@@ -106,6 +110,48 @@ const AdminDashboard = () => {
     setFormData((prev) => ({
       ...prev,
       galleryImages: prev.galleryImages.filter((_, i) => i !== index),
+    }));
+  };
+
+  const addSecondGalleryRow = (type) => {
+    setFormData((prev) => ({
+      ...prev,
+      secondGallery: [
+        ...prev.secondGallery,
+        {
+          type,
+          images: type === "landscape" ? [""] : ["", ""],
+        },
+      ],
+    }));
+  };
+
+  const removeSecondGalleryRow = (index) => {
+    setFormData((prev) => ({
+      ...prev,
+      secondGallery: prev.secondGallery.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleTagChange = (field, value, index) => {
+    setFormData((prev) => {
+      const newTags = [...prev[field]];
+      newTags[index] = value;
+      return { ...prev, [field]: newTags };
+    });
+  };
+
+  const addTag = (field) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: [...prev[field], ""],
+    }));
+  };
+
+  const removeTag = (field, index) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: prev[field].filter((_, i) => i !== index),
     }));
   };
 
@@ -143,14 +189,8 @@ const AdminDashboard = () => {
     try {
       const projectPayload = {
         ...formData,
-        designTags: formData.designTags
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean),
-        devTags: formData.devTags
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean),
+        designTags: formData.designTags.filter(Boolean),
+        devTags: formData.devTags.filter(Boolean),
       };
 
       if (view === "add") {
@@ -182,9 +222,13 @@ const AdminDashboard = () => {
         { type: "landscape", images: [""] },
       ],
       goals: ["", "", "", ""],
-      designTags: "",
-      devTags: "",
-      secondGallery: ["", "", ""],
+      designTags: [""],
+      devTags: [""],
+      secondGallery: [
+        { type: "landscape", images: [""] },
+        { type: "squares", images: ["", ""] },
+        { type: "landscape", images: [""] },
+      ],
       role: "",
       teamRoles: "",
       timeline: "",
@@ -222,6 +266,24 @@ const AdminDashboard = () => {
       ];
     }
 
+    let normalizedSecondGallery = project.secondGallery;
+    if (
+      project.secondGallery &&
+      project.secondGallery.length > 0 &&
+      typeof project.secondGallery[0] === "string"
+    ) {
+      normalizedSecondGallery = project.secondGallery.map((img) => ({
+        type: "landscape",
+        images: [img],
+      }));
+    } else if (!project.secondGallery || project.secondGallery.length === 0) {
+      normalizedSecondGallery = [
+        { type: "landscape", images: [""] },
+        { type: "squares", images: ["", ""] },
+        { type: "landscape", images: [""] },
+      ];
+    }
+
     setFormData({
       title: project.title,
       description: project.description,
@@ -232,9 +294,9 @@ const AdminDashboard = () => {
         project.goals && project.goals.length >= 4
           ? project.goals
           : ["", "", "", ""],
-      designTags: project.designTags ? project.designTags.join(", ") : "",
-      devTags: project.devTags ? project.devTags.join(", ") : "",
-      secondGallery: project.secondGallery || ["", "", ""],
+      designTags: project.designTags && project.designTags.length > 0 ? project.designTags : [""],
+      devTags: project.devTags && project.devTags.length > 0 ? project.devTags : [""],
+      secondGallery: normalizedSecondGallery,
       role: project.role || "",
       teamRoles: project.teamRoles || "",
       timeline: project.timeline || "",
@@ -632,46 +694,193 @@ const AdminDashboard = () => {
                 </button>
               </div>
 
-              {/* Tags */}
+              {/* Design Tags */}
               <div className="form-group">
                 <label>Design Tags</label>
-                <input
-                  name="designTags"
-                  className="form-input"
-                  value={formData.designTags}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Development Tags</label>
-                <input
-                  name="devTags"
-                  className="form-input"
-                  value={formData.devTags}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              {/* Gallery 2 */}
-              <div className="form-group">
-                <label>Second Gallery Images (3 Landscape/Square)</label>
-                {[0, 1, 2].map((i) => (
-                  <div key={i} style={{ marginBottom: "10px" }}>
+                {formData.designTags.map((tag, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      gap: "10px",
+                      marginBottom: "10px",
+                    }}
+                  >
                     <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleImageUpload(e, "secondGallery", i)}
+                      placeholder={`Tag ${i + 1}`}
+                      className="form-input"
+                      value={tag}
+                      onChange={(e) =>
+                        handleTagChange("designTags", e.target.value, i)
+                      }
                     />
-                    {formData.secondGallery[i] && (
-                      <img
-                        src={formData.secondGallery[i]}
-                        className="image-preview"
-                        alt={`Preview ${i}`}
-                      />
-                    )}
+                    <button
+                      type="button"
+                      onClick={() => removeTag("designTags", i)}
+                      className="delete-btn"
+                      style={{ padding: "0 10px" }}
+                    >
+                      X
+                    </button>
                   </div>
                 ))}
+                <button
+                  type="button"
+                  className="edit-btn"
+                  onClick={() => addTag("designTags")}
+                >
+                  + Add Design Tag
+                </button>
+              </div>
+
+              {/* Development Tags */}
+              <div className="form-group">
+                <label>Development Tags</label>
+                {formData.devTags.map((tag, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      gap: "10px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <input
+                      placeholder={`Tag ${i + 1}`}
+                      className="form-input"
+                      value={tag}
+                      onChange={(e) =>
+                        handleTagChange("devTags", e.target.value, i)
+                      }
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeTag("devTags", i)}
+                      className="delete-btn"
+                      style={{ padding: "0 10px" }}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  className="edit-btn"
+                  onClick={() => addTag("devTags")}
+                >
+                  + Add Development Tag
+                </button>
+              </div>
+
+              {/* Structured Gallery 2 */}
+              <div
+                className="form-group"
+                style={{
+                  border: "1px solid #eee",
+                  padding: "20px",
+                  borderRadius: "8px",
+                  background: "#f9f9f9",
+                }}
+              >
+                <label style={{ fontSize: "1.2rem", marginBottom: "20px" }}>
+                  Gallery Section 2
+                </label>
+
+                {formData.secondGallery.map((row, rowIndex) => (
+                  <div
+                    key={rowIndex}
+                    className="gallery-row-input"
+                    style={{
+                      marginBottom: "20px",
+                      paddingBottom: "20px",
+                      borderBottom: "1px dashed #ccc",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontWeight: "bold",
+                          textTransform: "uppercase",
+                          fontSize: "0.8rem",
+                          color: "#666",
+                        }}
+                      >
+                        Row {rowIndex + 1}: {row.type}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => removeSecondGalleryRow(rowIndex)}
+                        style={{
+                          color: "red",
+                          border: "none",
+                          background: "none",
+                          cursor: "pointer",
+                          fontSize: "0.8rem",
+                        }}
+                      >
+                        Remove Row
+                      </button>
+                    </div>
+
+                    <div style={{ display: "flex", gap: "10px" }}>
+                      {row.images.map((img, imgIndex) => (
+                        <div key={imgIndex} style={{ flex: 1 }}>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) =>
+                              handleImageUpload(
+                                e,
+                                "secondGallery",
+                                rowIndex,
+                                imgIndex,
+                              )
+                            }
+                          />
+                          {formData.secondGallery[rowIndex].images[
+                            imgIndex
+                          ] && (
+                            <img
+                              src={
+                                formData.secondGallery[rowIndex].images[
+                                  imgIndex
+                                ]
+                              }
+                              className="image-preview"
+                              alt="Preview"
+                            />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+
+                <div
+                  className="add-row-actions"
+                  style={{ display: "flex", gap: "10px" }}
+                >
+                  <button
+                    type="button"
+                    className="edit-btn"
+                    onClick={() => addSecondGalleryRow("landscape")}
+                  >
+                    + Add Landscape Row
+                  </button>
+                  <button
+                    type="button"
+                    className="edit-btn"
+                    onClick={() => addSecondGalleryRow("squares")}
+                  >
+                    + Add Squares Row
+                  </button>
+                </div>
               </div>
 
               <div className="form-actions">
