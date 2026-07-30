@@ -97,6 +97,7 @@ const Home = () => {
             link="/contact-us"
           />
         </div>
+    
         <AnimatedContentUse />
         <div className="home-split-text-container">
           <div className="split-text-intro">
